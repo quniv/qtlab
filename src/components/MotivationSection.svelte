@@ -1,10 +1,4 @@
 <script>
-  import { onMount } from 'svelte';
-  import { motivationQuotes } from '../data/quotes.js';
-
-  let displayedText = '';
-  let isTyping = true;
-  let currentQuoteIndex = 0;
   let lightboxSrc = null;
   let lightboxAlt = '';
 
@@ -20,33 +14,6 @@
   function handleLightboxKey(e) {
     if (e.key === 'Escape') closeLightbox();
   }
-
-  onMount(() => {
-    const typeQuote = () => {
-      const quote = motivationQuotes[currentQuoteIndex];
-      const fullText = `"${quote.text}" - ${quote.author}`;
-
-      if (isTyping) {
-        if (displayedText.length < fullText.length) {
-          displayedText = fullText.slice(0, displayedText.length + 1);
-          setTimeout(typeQuote, 50);
-        } else {
-          isTyping = false;
-          setTimeout(typeQuote, 3000);
-        }
-      } else {
-        if (displayedText.length > 0) {
-          displayedText = displayedText.slice(0, -1);
-          setTimeout(typeQuote, 30);
-        } else {
-          isTyping = true;
-          currentQuoteIndex = (currentQuoteIndex + 1) % motivationQuotes.length;
-          setTimeout(typeQuote, 500);
-        }
-      }
-    };
-    setTimeout(typeQuote, 2000);
-  });
 </script>
 
 <style>
@@ -63,41 +30,6 @@
   }
 
 
-
-  .motivation-quote-display {
-    background: rgba(0, 245, 255, 0.03);
-    border: 1px solid rgba(0, 245, 255, 0.15);
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 800px;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    box-shadow: 0 0 15px rgba(0, 245, 255, 0.04), inset 0 0 20px rgba(0, 245, 255, 0.02);
-  }
-
-  .quote-text {
-    color: #c0c8e8;
-    font-size: 1.1rem;
-    font-style: italic;
-    text-align: center;
-    font-weight: 300;
-  }
-
-  .cursor {
-    color: #00f5ff;
-    font-weight: bold;
-    animation: cursorBlink 0.8s infinite;
-    margin-left: 2px;
-    text-shadow: 0 0 8px rgba(0, 245, 255, 0.8);
-  }
-
-  @keyframes cursorBlink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
 
   .motivation-grid {
     display: grid;
@@ -204,11 +136,6 @@
 </style>
 
 <div class="motivation-section">
-  <div class="motivation-quote-display">
-    <span class="quote-text">{displayedText}</span>
-    <span class="cursor">|</span>
-  </div>
-
   <div class="motivation-grid">
     <button type="button" class="gif-card" on:click={() => openLightbox('images/medium-mike-tyson-boxer-wallpaper-poster-print-poster-on-13x19-original-imagc5ytjxqtnfur.webp', 'Mike Tyson')}>
       <img src="images/medium-mike-tyson-boxer-wallpaper-poster-print-poster-on-13x19-original-imagc5ytjxqtnfur.webp" alt="Mike Tyson" />

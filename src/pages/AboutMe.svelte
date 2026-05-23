@@ -1,20 +1,20 @@
 <!-- src/pages/AboutMe.svelte — Beatless Theme -->
 <script>
+  import { mount, unmount } from 'svelte';
   import CV from '../CV.svelte';
   import TerminalBoot from '../components/TerminalBoot.svelte';
   import GameOfLife from '../components/GameOfLife.svelte';
   import MotivationSection from '../components/MotivationSection.svelte';
   import HangingScroll from '../components/HangingScroll.svelte';
-  import CreedPoster from '../components/CreedPoster.svelte';
-  import QuotesTerminal from '../components/QuotesTerminal.svelte';
 
   let isGeneratingCV = false;
+  let cvError = '';
 
   async function downloadCV() {
     if (isGeneratingCV) return;
     isGeneratingCV = true;
+    cvError = '';
 
-    // Mount CV temporarily onto body at opacity:0 so html2canvas can render it
     const tempEl = document.createElement('div');
     tempEl.className = 'pdf-export';
     Object.assign(tempEl.style, {
@@ -26,7 +26,7 @@
       zIndex: '-9999',
     });
     document.body.appendChild(tempEl);
-    const cvInstance = new CV({ target: tempEl });
+    const cvInstance = mount(CV, { target: tempEl });
 
     try {
       const html2pdf = (await import('html2pdf.js')).default;
@@ -45,8 +45,11 @@
         })
         .from(tempEl.firstElementChild)
         .save();
+    } catch (err) {
+      cvError = 'Failed to generate CV. Please try again.';
+      console.error(err);
     } finally {
-      cvInstance.$destroy();
+      unmount(cvInstance);
       document.body.removeChild(tempEl);
       isGeneratingCV = false;
     }
@@ -263,6 +266,14 @@
     background: rgba(0, 245, 255, 0.08);
   }
 
+  .cv-error {
+    color: #ff006e;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(255, 0, 110, 0.4);
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .profile-section {
@@ -300,13 +311,14 @@
   <GameOfLife />
   <MotivationSection />
   <HangingScroll />
-  <CreedPoster />
-  <QuotesTerminal />
 </main>
 
 <footer>
   <button class="cv-download-btn" on:click={downloadCV} disabled={isGeneratingCV}>
     {isGeneratingCV ? '⏳ Generating...' : '↓ Download CV'}
   </button>
+  {#if cvError}
+    <p class="cv-error">{cvError}</p>
+  {/if}
   <p>© 2024 🤖🔗🍀 · Analog Hack 🤍</p>
 </footer>

@@ -8,10 +8,12 @@
   import HangingScroll from '../components/HangingScroll.svelte';
 
   let isGeneratingCV = false;
+  let cvError = '';
 
   async function downloadCV() {
     if (isGeneratingCV) return;
     isGeneratingCV = true;
+    cvError = '';
 
     const tempEl = document.createElement('div');
     tempEl.className = 'pdf-export';
@@ -43,6 +45,9 @@
         })
         .from(tempEl.firstElementChild)
         .save();
+    } catch (err) {
+      cvError = 'Failed to generate CV. Please try again.';
+      console.error(err);
     } finally {
       unmount(cvInstance);
       document.body.removeChild(tempEl);
@@ -261,6 +266,14 @@
     background: rgba(0, 245, 255, 0.08);
   }
 
+  .cv-error {
+    color: #ff006e;
+    font-size: 0.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px rgba(255, 0, 110, 0.4);
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .profile-section {
@@ -304,5 +317,8 @@
   <button class="cv-download-btn" on:click={downloadCV} disabled={isGeneratingCV}>
     {isGeneratingCV ? '⏳ Generating...' : '↓ Download CV'}
   </button>
+  {#if cvError}
+    <p class="cv-error">{cvError}</p>
+  {/if}
   <p>© 2024 🤖🔗🍀 · Analog Hack 🤍</p>
 </footer>

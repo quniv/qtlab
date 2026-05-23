@@ -1,5 +1,6 @@
 <!-- src/pages/AboutMe.svelte — Beatless Theme -->
 <script>
+  import { mount, unmount } from 'svelte';
   import CV from '../CV.svelte';
   import TerminalBoot from '../components/TerminalBoot.svelte';
   import GameOfLife from '../components/GameOfLife.svelte';
@@ -12,7 +13,6 @@
     if (isGeneratingCV) return;
     isGeneratingCV = true;
 
-    // Mount CV temporarily onto body at opacity:0 so html2canvas can render it
     const tempEl = document.createElement('div');
     tempEl.className = 'pdf-export';
     Object.assign(tempEl.style, {
@@ -24,7 +24,7 @@
       zIndex: '-9999',
     });
     document.body.appendChild(tempEl);
-    const cvInstance = new CV({ target: tempEl });
+    const cvInstance = mount(CV, { target: tempEl });
 
     try {
       const html2pdf = (await import('html2pdf.js')).default;
@@ -44,7 +44,7 @@
         .from(tempEl.firstElementChild)
         .save();
     } finally {
-      cvInstance.$destroy();
+      unmount(cvInstance);
       document.body.removeChild(tempEl);
       isGeneratingCV = false;
     }

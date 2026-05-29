@@ -171,7 +171,6 @@
 </div>
 
 {#if lightboxSrc}
-  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <div class="lightbox-overlay" on:click={closeLightbox} on:keydown={handleLightboxKey} role="dialog" aria-modal="true" tabindex="-1">
     <div on:click|stopPropagation role="presentation"><img src={lightboxSrc} alt={lightboxAlt} /></div>
     <button class="lightbox-close" on:click={closeLightbox} aria-label="Close">✕</button>

@@ -14,18 +14,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(0, 245, 255, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.15);
     border-radius: 4px;
-    background: rgba(0, 245, 255, 0.03);
-    color: rgba(0, 245, 255, 0.45);
+    background: rgba(167, 139, 250, 0.03);
+    color: rgba(167, 139, 250, 0.45);
     transition: all 0.3s ease;
   }
 
   .icon-wrap:hover {
-    border-color: rgba(0, 245, 255, 0.5);
-    background: rgba(0, 245, 255, 0.07);
-    color: #00f5ff;
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.15);
+    border-color: rgba(167, 139, 250, 0.5);
+    background: rgba(167, 139, 250, 0.07);
+    color: #a78bfa;
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.15);
     transform: translateY(-3px);
   }
 
@@ -49,7 +49,7 @@
 <div class="tech-strip">
   <!-- Kubernetes -->
   <div class="icon-wrap">
-    <img src="https://cdn.simpleicons.org/kubernetes/00f5ff" alt="" />
+    <img src="https://cdn.simpleicons.org/kubernetes/a78bfa" alt="" />
   </div>
 
   <!-- AWS -->

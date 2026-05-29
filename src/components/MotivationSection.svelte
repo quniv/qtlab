@@ -20,11 +20,11 @@
   .motivation-section {
     background: rgba(0, 5, 20, 0.85);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     margin: 3rem 0;
     padding: 3rem 2rem;
     border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.06);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.06);
     position: relative;
     overflow: hidden;
   }
@@ -42,14 +42,14 @@
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     border-radius: 2px;
     background: #000;
     transition: all 0.4s ease;
-    box-shadow: 0 0 10px rgba(0, 245, 255, 0.05);
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.05);
     /* button reset */
     background: none;
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     padding: 0;
     cursor: zoom-in;
     /* override none from button reset */
@@ -66,8 +66,8 @@
 
   .gif-card:hover {
     transform: scale(1.03) translateY(-4px);
-    border-color: #00f5ff;
-    box-shadow: 0 0 25px rgba(0, 245, 255, 0.3), 0 0 50px rgba(0, 245, 255, 0.08);
+    border-color: #a78bfa;
+    box-shadow: 0 0 25px rgba(167, 139, 250, 0.3), 0 0 50px rgba(167, 139, 250, 0.08);
   }
 
   .gif-card:hover img {
@@ -95,8 +95,8 @@
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
-    border: 1px solid rgba(0, 245, 255, 0.3);
-    box-shadow: 0 0 60px rgba(0, 245, 255, 0.15);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    box-shadow: 0 0 60px rgba(167, 139, 250, 0.15);
     border-radius: 2px;
     animation: lb-scale 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
@@ -111,8 +111,8 @@
     top: 1.25rem;
     right: 1.5rem;
     background: none;
-    border: 1px solid rgba(0, 245, 255, 0.4);
-    color: #00f5ff;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    color: #a78bfa;
     font-size: 1.25rem;
     line-height: 1;
     padding: 0.35rem 0.6rem;
@@ -122,8 +122,8 @@
   }
 
   .lightbox-close:hover {
-    background: rgba(0, 245, 255, 0.1);
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.3);
+    background: rgba(167, 139, 250, 0.1);
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.3);
   }
 
   @media (max-width: 768px) {

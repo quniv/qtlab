@@ -26,7 +26,7 @@
     height: 10px;
     background: linear-gradient(180deg, #1a1a3a 0%, #0a0a2a 50%, #050518 100%);
     border-radius: 0;
-    box-shadow: 0 0 10px rgba(0, 245, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.2), 0 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
   }
 
@@ -38,7 +38,7 @@
     transform: translateY(-50%);
     width: 8px;
     height: 16px;
-    background: linear-gradient(180deg, #00f5ff 0%, #0088aa 50%, #005566 100%);
+    background: linear-gradient(180deg, #a78bfa 0%, #7c3aed 50%, #4c1d95 100%);
     border-radius: 0;
   }
 
@@ -48,8 +48,8 @@
   .scroll-body {
     width: auto;
     background: linear-gradient(180deg, #080820 0%, #0a0a28 10%, #080820 50%, #0a0a28 90%, #080820 100%);
-    border-left: 2px solid rgba(0, 245, 255, 0.4);
-    border-right: 2px solid rgba(0, 245, 255, 0.4);
+    border-left: 2px solid rgba(167, 139, 250, 0.4);
+    border-right: 2px solid rgba(167, 139, 250, 0.4);
     padding: 1rem 1.2rem;
     position: relative;
   }
@@ -77,14 +77,14 @@
     font-family: 'Noto Serif SC', 'SimSun', serif;
     font-size: 1.5rem;
     font-weight: 700;
-    color: #00f5ff;
-    text-shadow: 0 0 10px rgba(0, 245, 255, 0.6);
+    color: #a78bfa;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
     transition: all 0.3s ease;
     line-height: 1.2;
   }
 
   .scroll-text span:hover {
-    color: #ff006e;
+    color: #f472b6;
     text-shadow: 0 0 15px rgba(255, 0, 110, 0.8);
   }
 
@@ -95,7 +95,7 @@
   .scroll-tassel {
     width: 4px;
     height: 40px;
-    background: linear-gradient(180deg, rgba(0, 245, 255, 0.6), rgba(0, 245, 255, 0.2));
+    background: linear-gradient(180deg, rgba(167, 139, 250, 0.6), rgba(167, 139, 250, 0.2));
     position: relative;
     margin-top: -2px;
   }
@@ -108,13 +108,13 @@
     transform: translateX(-50%);
     width: 20px;
     height: 30px;
-    background: linear-gradient(180deg, #ff006e 0%, #aa0049 100%);
+    background: linear-gradient(180deg, #f472b6 0%, #c026d3 100%);
     clip-path: polygon(50% 0%, 100% 20%, 80% 100%, 20% 100%, 0% 20%);
   }
 
   .scroll-translation {
     margin-top: 2rem;
-    color: #6070a0;
+    color: #6b5a9e;
     font-size: 1rem;
     font-style: italic;
     text-align: center;

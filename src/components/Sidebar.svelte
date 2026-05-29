@@ -25,9 +25,9 @@
     top: 14px;
     left: 14px;
     z-index: 300;
-    background: rgba(0, 5, 20, 0.95);
-    border: 1px solid rgba(0, 245, 255, 0.4);
-    color: #00f5ff;
+    background: rgba(5, 3, 20, 0.95);
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    color: #a78bfa;
     font-size: 1.2rem;
     line-height: 1;
     padding: 0.4rem 0.6rem;
@@ -37,8 +37,8 @@
   }
 
   .hamburger:hover {
-    background: rgba(0, 245, 255, 0.1);
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.3);
+    background: rgba(167, 139, 250, 0.1);
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.3);
   }
 
   /* ── Sidebar ── */
@@ -48,19 +48,19 @@
     left: 0;
     width: 220px;
     height: 100vh;
-    background: rgba(0, 5, 20, 0.98);
-    border-right: 1px solid rgba(0, 245, 255, 0.25);
+    background: rgba(5, 3, 20, 0.98);
+    border-right: 1px solid rgba(167, 139, 250, 0.25);
     display: flex;
     flex-direction: column;
     z-index: 200;
-    box-shadow: 4px 0 24px rgba(0, 245, 255, 0.06);
+    box-shadow: 4px 0 24px rgba(167, 139, 250, 0.06);
     transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* ── Logo / Title ── */
   .sidebar-logo {
     padding: 1.8rem 1.5rem 1.4rem;
-    border-bottom: 1px solid rgba(0, 245, 255, 0.12);
+    border-bottom: 1px solid rgba(167, 139, 250, 0.12);
   }
 
   .pickle-icon {
@@ -94,7 +94,7 @@
     gap: 0.75rem;
     padding: 0.75rem 1.5rem;
     cursor: pointer;
-    color: #8892b0;
+    color: #9d8ec4;
     font-size: 0.9rem;
     font-weight: 400;
     letter-spacing: 0.5px;
@@ -109,14 +109,14 @@
 
   .nav-item:hover {
     color: #c0c8e8;
-    background: rgba(0, 245, 255, 0.05);
+    background: rgba(167, 139, 250, 0.05);
   }
 
   .nav-item.active {
-    color: #00f5ff;
-    background: rgba(0, 245, 255, 0.07);
-    border-left-color: #00f5ff;
-    text-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
+    color: #a78bfa;
+    background: rgba(167, 139, 250, 0.07);
+    border-left-color: #a78bfa;
+    text-shadow: 0 0 8px rgba(167, 139, 250, 0.4);
   }
 
   .nav-icon {
@@ -129,10 +129,10 @@
   /* ── Footer strip ── */
   .sidebar-footer {
     padding: 1rem 1.5rem;
-    border-top: 1px solid rgba(0, 245, 255, 0.1);
+    border-top: 1px solid rgba(167, 139, 250, 0.1);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.6rem;
-    color: #404868;
+    color: #4a4070;
     letter-spacing: 1px;
     display: flex;
     align-items: center;
@@ -141,9 +141,9 @@
 
   .footer-icon-btn {
     background: none;
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     border-radius: 4px;
-    color: #8892b0;
+    color: #9d8ec4;
     font-size: 1rem;
     width: 28px;
     height: 28px;
@@ -158,15 +158,15 @@
 
   .footer-icon-btn:hover {
     color: #c0c8e8;
-    border-color: rgba(0, 245, 255, 0.4);
-    background: rgba(0, 245, 255, 0.06);
+    border-color: rgba(167, 139, 250, 0.4);
+    background: rgba(167, 139, 250, 0.06);
   }
 
   .footer-icon-btn.active {
-    color: #00f5ff;
-    border-color: #00f5ff;
-    background: rgba(0, 245, 255, 0.08);
-    box-shadow: 0 0 8px rgba(0, 245, 255, 0.25);
+    color: #a78bfa;
+    border-color: #a78bfa;
+    background: rgba(167, 139, 250, 0.08);
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.25);
   }
 
   /* ── Mobile overlay backdrop ── */

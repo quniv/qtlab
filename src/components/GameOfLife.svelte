@@ -3,12 +3,12 @@
   .recipe-section {
     background: rgba(0, 5, 20, 0.85);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     padding: 3rem 2rem;
     margin: 3rem 0;
     text-align: center;
     border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.06);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.06);
     position: relative;
     overflow: hidden;
   }
@@ -29,8 +29,8 @@
   .level-bar {
     width: 200px;
     height: 6px;
-    background: rgba(0, 245, 255, 0.08);
-    border: 1px solid rgba(0, 245, 255, 0.3);
+    background: rgba(167, 139, 250, 0.08);
+    border: 1px solid rgba(167, 139, 250, 0.3);
     border-radius: 0;
     overflow: hidden;
   }
@@ -38,7 +38,7 @@
   .level-progress {
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg, #00f5ff, #ff006e, #00f5ff);
+    background: linear-gradient(90deg, #a78bfa, #fbbf24, #f472b6, #a78bfa);
     background-size: 200% 100%;
     animation: progressShift 2s linear infinite;
     border-radius: 0;
@@ -50,12 +50,12 @@
   }
 
   .level-text {
-    color: #00f5ff;
+    color: #a78bfa;
     font-size: 1rem;
     font-weight: 600;
     letter-spacing: 3px;
     font-family: 'JetBrains Mono', monospace;
-    text-shadow: 0 0 10px rgba(0, 245, 255, 0.6);
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.6);
   }
 
   .cycle-container {
@@ -80,18 +80,18 @@
     gap: 0.4rem;
     padding: 1.2rem 1.2rem;
     background: rgba(0, 5, 25, 0.9);
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     min-width: 130px;
     transition: all 0.3s ease;
     position: relative;
     border-radius: 2px;
-    box-shadow: 0 0 10px rgba(0, 245, 255, 0.04);
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.04);
   }
 
   .cycle-step:hover {
     transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2), 0 0 40px rgba(0, 245, 255, 0.06);
-    border-color: #00f5ff;
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.2), 0 0 40px rgba(167, 139, 250, 0.06);
+    border-color: #a78bfa;
   }
 
   .cycle-step .step-number {
@@ -100,7 +100,7 @@
     left: -10px;
     width: 24px;
     height: 24px;
-    background: #00f5ff;
+    background: #a78bfa;
     color: #000;
     font-size: 0.75rem;
     font-weight: 700;
@@ -116,25 +116,25 @@
   }
 
   .cycle-step .step-text {
-    color: #c0c8e8;
+    color: #e2d9f3;
     font-weight: 600;
     font-size: 0.85rem;
     letter-spacing: 1px;
   }
 
   .cycle-step .step-desc {
-    color: #6070a0;
+    color: #6b5a9e;
     font-size: 0.7rem;
     text-align: center;
   }
 
   .cycle-step.damage {
-    border-color: rgba(255, 0, 110, 0.4);
+    border-color: rgba(244, 114, 182, 0.4);
     background: rgba(20, 0, 10, 0.9);
   }
 
   .cycle-step.damage .step-number {
-    background: #ff006e;
+    background: #f472b6;
   }
 
   .cycle-step.growth {
@@ -148,7 +148,7 @@
   }
 
   .cycle-step.next-level {
-    border-color: rgba(0, 245, 255, 0.4);
+    border-color: rgba(167, 139, 250, 0.4);
     background: rgba(0, 10, 25, 0.9);
     animation: neonPulse 3s ease-in-out infinite alternate;
   }
@@ -159,17 +159,17 @@
   }
 
   @keyframes neonPulse {
-    0% { box-shadow: 0 0 10px rgba(0, 245, 255, 0.1); }
-    100% { box-shadow: 0 0 25px rgba(0, 245, 255, 0.35), 0 0 50px rgba(0, 245, 255, 0.1); }
+    0% { box-shadow: 0 0 10px rgba(167, 139, 250, 0.1); }
+    100% { box-shadow: 0 0 25px rgba(167, 139, 250, 0.35), 0 0 50px rgba(167, 139, 250, 0.1); }
   }
 
   .cycle-arrow {
-    color: #00f5ff;
+    color: #a78bfa;
     font-size: 1.3rem;
     font-weight: 300;
     opacity: 0.6;
     animation: arrowPulse 2s ease-in-out infinite;
-    text-shadow: 0 0 8px rgba(0, 245, 255, 0.6);
+    text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
   }
 
   @keyframes arrowPulse {
@@ -183,16 +183,16 @@
     justify-content: center;
     gap: 1rem;
     padding: 1rem 1.5rem;
-    background: rgba(0, 245, 255, 0.04);
-    border: 1px solid rgba(0, 245, 255, 0.15);
+    background: rgba(167, 139, 250, 0.04);
+    border: 1px solid rgba(167, 139, 250, 0.15);
     border-radius: 2px;
   }
 
   .loop-arrow {
     font-size: 1.5rem;
-    color: #00f5ff;
+    color: #a78bfa;
     animation: loopSpin 4s linear infinite;
-    text-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.8);
   }
 
   @keyframes loopSpin {
@@ -201,7 +201,7 @@
   }
 
   .loop-text {
-    color: #8892b0;
+    color: #9d8ec4;
     font-size: 0.9rem;
     font-style: italic;
   }

@@ -1,6 +1,7 @@
 <!-- src/App.svelte — Root layout -->
 <script>
   import Sidebar from './components/Sidebar.svelte';
+  import Starfield from './components/Starfield.svelte';
   import News from './pages/News.svelte';
   import AboutMe from './pages/AboutMe.svelte';
 
@@ -9,39 +10,31 @@
 
 <style>
   /* ═══════════════════════════════════════════
-     CYBERPUNK THEME — Global Body Styles
+     UNIVERSE THEME — Global Body Styles
      ═══════════════════════════════════════════ */
 
   :global(body) {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     margin: 0;
     padding: 0;
-    background: #050510;
-    color: #c0c8e8;
+    background: #030308;
+    color: #e2d9f3;
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
   }
 
-  /* Scanlines + neon glow overlay */
+  /* Nebula cloud overlay */
   :global(body::before) {
     content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0, 245, 255, 0.012) 2px,
-        rgba(0, 245, 255, 0.012) 4px
-      ),
-      radial-gradient(ellipse at 50% 0%, rgba(0, 245, 255, 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, rgba(255, 0, 110, 0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 20% 60%, rgba(0, 245, 255, 0.04) 0%, transparent 40%);
+      radial-gradient(ellipse 70% 50% at 20% 20%, rgba(120, 60, 200, 0.13) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 40% at 82% 85%, rgba(251, 191, 36, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 60% at 85% 25%, rgba(96, 165, 250, 0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 45% 55% at 12% 75%, rgba(244, 114, 182, 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 90% 80% at 50% 50%, rgba(40, 15, 80, 0.22) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
@@ -71,6 +64,8 @@
     }
   }
 </style>
+
+<Starfield />
 
 <div class="app-shell">
   <Sidebar bind:activeTab />

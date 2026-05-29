@@ -60,9 +60,9 @@
 <style>
   /* ── Header ── */
   header {
-    background: linear-gradient(180deg, rgba(0, 5, 20, 0.98) 0%, rgba(5, 5, 25, 0.95) 100%);
+    background: linear-gradient(180deg, rgba(5, 3, 20, 0.98) 0%, rgba(5, 5, 25, 0.95) 100%);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+    border-bottom: 1px solid rgba(167, 139, 250, 0.2);
     padding: 4rem 2rem;
     text-align: center;
     position: relative;
@@ -76,7 +76,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #00f5ff, #ff006e, #00f5ff, transparent);
+    background: linear-gradient(90deg, transparent, #a78bfa, #fbbf24, #f472b6, #a78bfa, transparent);
     background-size: 200% 100%;
     animation: shimmer 4s linear infinite;
   }
@@ -87,7 +87,7 @@
   }
 
   .main-quote {
-    color: #c0c8e8;
+    color: #e2d9f3;
     font-size: 1.5rem;
     font-style: italic;
     font-weight: 300;
@@ -115,73 +115,73 @@
   }
 
   .profile-card {
-    background: rgba(0, 5, 20, 0.85);
+    background: rgba(5, 3, 20, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 255, 0.25);
+    border: 1px solid rgba(167, 139, 250, 0.25);
     padding: 2.5rem 2rem;
     text-align: center;
     border-radius: 4px;
     box-shadow:
-      0 0 20px rgba(0, 245, 255, 0.08),
-      inset 0 0 20px rgba(0, 245, 255, 0.02);
+      0 0 20px rgba(167, 139, 250, 0.08),
+      inset 0 0 20px rgba(167, 139, 250, 0.02);
     transition: all 0.4s ease;
   }
 
   .profile-card:hover {
     box-shadow:
-      0 0 30px rgba(0, 245, 255, 0.2),
-      0 0 60px rgba(0, 245, 255, 0.06),
-      inset 0 0 20px rgba(0, 245, 255, 0.04);
+      0 0 30px rgba(167, 139, 250, 0.2),
+      0 0 60px rgba(167, 139, 250, 0.06),
+      inset 0 0 20px rgba(167, 139, 250, 0.04);
     transform: translateY(-4px);
-    border-color: rgba(0, 245, 255, 0.5);
+    border-color: rgba(167, 139, 250, 0.5);
   }
 
   img.profile {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 2px solid rgba(0, 245, 255, 0.4);
+    border: 2px solid rgba(167, 139, 250, 0.4);
     margin-bottom: 1.2rem;
     transition: all 0.4s ease;
-    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+    box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
     object-fit: cover;
   }
 
   img.profile:hover {
     transform: scale(1.08);
-    border-color: #00f5ff;
-    box-shadow: 0 0 30px rgba(0, 245, 255, 0.4), 0 0 60px rgba(0, 245, 255, 0.1);
+    border-color: #a78bfa;
+    box-shadow: 0 0 30px rgba(167, 139, 250, 0.4), 0 0 60px rgba(167, 139, 250, 0.1);
   }
 
   .name {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #e0e8ff;
+    color: #f0ecff;
     margin: 1rem 0 0.5rem;
     letter-spacing: 1px;
   }
 
   .role {
-    color: #00f5ff;
+    color: #a78bfa;
     font-size: 0.9rem;
     font-weight: 500;
     letter-spacing: 2px;
-    text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+    text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
   }
 
   /* ── Bio Section ── */
   .bio-section {
-    background: rgba(0, 5, 20, 0.85);
+    background: rgba(5, 3, 20, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 255, 0.2);
+    border: 1px solid rgba(167, 139, 250, 0.2);
     padding: 2.5rem;
     line-height: 1.8;
     border-radius: 4px;
     box-shadow:
-      0 0 20px rgba(0, 245, 255, 0.06),
-      inset 0 0 20px rgba(0, 245, 255, 0.02);
+      0 0 20px rgba(167, 139, 250, 0.06),
+      inset 0 0 20px rgba(167, 139, 250, 0.02);
     position: relative;
   }
 
@@ -192,7 +192,7 @@
     left: 24px;
     background: #050510;
     padding: 2px 12px;
-    color: #00f5ff;
+    color: #a78bfa;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 3px;
@@ -202,16 +202,16 @@
 
   .bio-section p {
     margin-bottom: 1rem;
-    color: #8892b0;
+    color: #9d8ec4;
     font-weight: 400;
   }
 
   /* ── Footer ── */
   footer {
-    background: rgba(0, 5, 20, 0.95);
+    background: rgba(5, 3, 20, 0.95);
     backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(0, 245, 255, 0.15);
-    color: #6070a0;
+    border-top: 1px solid rgba(167, 139, 250, 0.15);
+    color: #6b5a9e;
     text-align: center;
     padding: 2rem;
     margin-top: 3rem;
@@ -225,7 +225,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #00f5ff, #ff006e, #00f5ff, transparent);
+    background: linear-gradient(90deg, transparent, #a78bfa, #fbbf24, #f472b6, #a78bfa, transparent);
     background-size: 200% 100%;
     animation: shimmer 4s linear infinite;
   }
@@ -241,7 +241,7 @@
     margin-bottom: 1.2rem;
     padding: 0.7rem 2rem;
     background: transparent;
-    color: #00f5ff;
+    color: #a78bfa;
     text-decoration: none;
     border: none;
     border-radius: 0;
@@ -249,7 +249,7 @@
     font-weight: 500;
     letter-spacing: 2px;
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    box-shadow: 0 0 12px rgba(0, 245, 255, 0.2), inset 0 0 0 1px rgba(0, 245, 255, 0.4);
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.2), inset 0 0 0 1px rgba(167, 139, 250, 0.4);
     font-family: 'JetBrains Mono', monospace;
     text-transform: uppercase;
     cursor: pointer;
@@ -263,12 +263,12 @@
 
   .cv-download-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(0, 245, 255, 0.4), inset 0 0 0 1px #00f5ff;
-    background: rgba(0, 245, 255, 0.08);
+    box-shadow: 0 0 25px rgba(167, 139, 250, 0.4), inset 0 0 0 1px #a78bfa;
+    background: rgba(167, 139, 250, 0.08);
   }
 
   .cv-error {
-    color: #ff006e;
+    color: #f472b6;
     font-size: 0.8rem;
     font-family: 'JetBrains Mono', monospace;
     margin-bottom: 0.5rem;

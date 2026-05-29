@@ -28,14 +28,14 @@
   }
 
   .news-terminal {
-    background: rgba(0, 5, 20, 0.88);
+    background: rgba(5, 3, 20, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 245, 255, 0.3);
+    border: 1px solid rgba(167, 139, 250, 0.3);
     border-radius: 4px;
     box-shadow:
-      0 0 30px rgba(0, 245, 255, 0.1),
-      inset 0 0 20px rgba(0, 245, 255, 0.03);
+      0 0 30px rgba(167, 139, 250, 0.1),
+      inset 0 0 20px rgba(167, 139, 250, 0.03);
     overflow: hidden;
   }
 
@@ -44,8 +44,8 @@
     align-items: center;
     gap: 8px;
     padding: 0.75rem 1rem;
-    background: rgba(0, 245, 255, 0.05);
-    border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+    background: rgba(167, 139, 250, 0.05);
+    border-bottom: 1px solid rgba(167, 139, 250, 0.15);
   }
 
   .t-dot {
@@ -54,13 +54,13 @@
     border-radius: 50%;
   }
 
-  .t-dot.red    { background: #ff006e; box-shadow: 0 0 6px rgba(255, 0, 110, 0.7); }
-  .t-dot.yellow { background: #f7ff00; box-shadow: 0 0 6px rgba(247, 255, 0, 0.7); }
-  .t-dot.green  { background: #00f5ff; box-shadow: 0 0 6px rgba(0, 245, 255, 0.7); }
+  .t-dot.red    { background: #f472b6; box-shadow: 0 0 6px rgba(255, 0, 110, 0.7); }
+  .t-dot.yellow { background: #fbbf24; box-shadow: 0 0 6px rgba(247, 255, 0, 0.7); }
+  .t-dot.green  { background: #a78bfa; box-shadow: 0 0 6px rgba(167, 139, 250, 0.7); }
 
   .terminal-label {
     margin-left: 0.5rem;
-    color: #00f5ff;
+    color: #a78bfa;
     font-family: 'JetBrains Mono', 'SF Mono', monospace;
     font-size: 0.8rem;
     letter-spacing: 1px;
@@ -74,14 +74,14 @@
   }
 
   .terminal-line {
-    color: #00f5ff;
+    color: #a78bfa;
     line-height: 2;
     animation: fadeIn 0.3s ease-out;
     white-space: pre;
   }
 
   .terminal-line.pending {
-    color: #8892b0;
+    color: #9d8ec4;
   }
 
   @keyframes fadeIn {
@@ -99,8 +99,8 @@
     display: inline-block;
     width: 8px;
     height: 1.1em;
-    background: #00f5ff;
-    box-shadow: 0 0 8px rgba(0, 245, 255, 0.8);
+    background: #a78bfa;
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.8);
     animation: cursorBlink 0.9s step-end infinite;
     vertical-align: middle;
   }
@@ -115,18 +115,18 @@
   }
 
   .news-header h1 {
-    color: #e0e8ff;
+    color: #f0ecff;
     font-size: 1.6rem;
     font-weight: 300;
     letter-spacing: 6px;
     text-transform: uppercase;
     margin: 0 0 0.4rem;
     font-family: 'JetBrains Mono', monospace;
-    text-shadow: 0 0 20px rgba(0, 245, 255, 0.25);
+    text-shadow: 0 0 20px rgba(167, 139, 250, 0.25);
   }
 
   .news-header .subtitle {
-    color: #00f5ff;
+    color: #a78bfa;
     font-size: 0.8rem;
     letter-spacing: 3px;
     opacity: 0.7;

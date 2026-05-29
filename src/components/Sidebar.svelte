@@ -4,8 +4,7 @@
   let mobileOpen = false;
 
   const tabs = [
-    { id: 'news',    label: 'News',     icon: '📰' },
-    { id: 'aboutme', label: 'About Me', icon: '👤' },
+    { id: 'news', label: 'News', icon: '📰' },
   ];
 
   function selectTab(id) {
@@ -64,36 +63,18 @@
     border-bottom: 1px solid rgba(0, 245, 255, 0.12);
   }
 
-  .logo-text {
-    font-family: 'JetBrains Mono', 'SF Mono', monospace;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #00f5ff;
-    letter-spacing: 4px;
-    text-transform: lowercase;
-    text-shadow: 0 0 16px rgba(0, 245, 255, 0.6);
+  .pickle-icon {
+    font-size: 2.2rem;
     display: block;
+    text-align: center;
+    animation: pickleFloat 3s ease-in-out infinite;
+    cursor: default;
+    user-select: none;
   }
 
-  .logo-sub {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: #8892b0;
-    letter-spacing: 2px;
-    margin-top: 0.25rem;
-    display: block;
-  }
-
-  .logo-motto {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: #00f5ff;
-    letter-spacing: 3px;
-    margin-top: 0.6rem;
-    display: block;
-    opacity: 0.75;
-    text-transform: uppercase;
-    text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+  @keyframes pickleFloat {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50%       { transform: rotate(8deg) translateY(-4px); }
   }
 
   /* ── Nav ── */
@@ -149,6 +130,39 @@
     font-size: 0.6rem;
     color: #404868;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer-icon-btn {
+    background: none;
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    border-radius: 4px;
+    color: #8892b0;
+    font-size: 1rem;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .footer-icon-btn:hover {
+    color: #c0c8e8;
+    border-color: rgba(0, 245, 255, 0.4);
+    background: rgba(0, 245, 255, 0.06);
+  }
+
+  .footer-icon-btn.active {
+    color: #00f5ff;
+    border-color: #00f5ff;
+    background: rgba(0, 245, 255, 0.08);
+    box-shadow: 0 0 8px rgba(0, 245, 255, 0.25);
   }
 
   /* ── Mobile overlay backdrop ── */
@@ -192,9 +206,7 @@
 
 <aside class="sidebar" class:open={mobileOpen}>
   <div class="sidebar-logo">
-    <span class="logo-text">qitpy</span>
-    <span class="logo-sub">// personal space</span>
-    <span class="logo-motto">valhalla calling me</span>
+    <span class="pickle-icon">🥒</span>
   </div>
 
   <nav>
@@ -210,5 +222,13 @@
     {/each}
   </nav>
 
-  <div class="sidebar-footer">v0.1.0 · qitpy</div>
+  <div class="sidebar-footer">
+    <button
+      class="footer-icon-btn"
+      class:active={activeTab === 'aboutme'}
+      on:click={() => selectTab('aboutme')}
+      title="About Me"
+    >👤</button>
+    <span>v0.1.0</span>
+  </div>
 </aside>

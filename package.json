@@ -17,9 +17,9 @@
     "eslint-plugin-svelte": "^3.18.0",
     "globals": "^17.6.0",
     "sharp": "^0.34.5",
-    "svelte": "^5.55.7",
-    "tenoxui": "^0.7.1",
-    "vite": "^8.0.12"
+    "svelte": "^5.55.10",
+    "tenoxui": "^1.0.0",
+    "vite": "^8.0.14"
   },
   "dependencies": {
     "html2pdf.js": "^0.14.0"

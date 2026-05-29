@@ -33,9 +33,9 @@
       <h2>Technical Skills</h2>
       <hr />
     </div>
-    {#each cv.skills as group}
+    {#each cv.skills as group (group.group)}
       <div class="skill-group-label">{group.group}</div>
-      {#each group.items as skill}
+      {#each group.items as skill (skill.label)}
         <div class="skill-row">
           <span class="skill-bullet">&bull;</span>
           <span><strong>{skill.label}:</strong> {skill.detail}</span>
@@ -50,7 +50,7 @@
       <h2>Professional Experience</h2>
       <hr />
     </div>
-    {#each cv.experience as job}
+    {#each cv.experience as job (job.title + job.company)}
       <div class="entry">
         <div class="entry-title">{job.title}</div>
         <div class="entry-meta">
@@ -59,7 +59,7 @@
         </div>
         {#if job.bullets.length}
           <ul>
-            {#each job.bullets as b}
+            {#each job.bullets as b (b)}
               <li>{b}</li>
             {/each}
           </ul>
@@ -86,7 +86,7 @@
       <h2>Additional Information</h2>
       <hr />
     </div>
-    {#each cv.additional as line}
+    {#each cv.additional as line (line)}
       <div class="skill-row">
         <span class="skill-bullet">&bull;</span>
         <span>{line}</span>

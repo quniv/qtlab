@@ -8,6 +8,7 @@
     let i = 0;
     const typeWriter = () => {
       if (i < bootSequence.length) {
+        // eslint-disable-next-line security/detect-object-injection
         terminalText += bootSequence[i] + '\n';
         i++;
         setTimeout(typeWriter, 800);

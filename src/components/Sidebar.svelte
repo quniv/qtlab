@@ -68,8 +68,12 @@
     display: block;
     text-align: center;
     animation: pickleFloat 3s ease-in-out infinite;
-    cursor: default;
+    cursor: pointer;
     user-select: none;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
   }
 
   @keyframes pickleFloat {
@@ -206,7 +210,7 @@
 
 <aside class="sidebar" class:open={mobileOpen}>
   <div class="sidebar-logo">
-    <span class="pickle-icon">🥒</span>
+    <button class="pickle-icon" on:click={() => selectTab('news')} title="Home">🥒</button>
   </div>
 
   <nav>

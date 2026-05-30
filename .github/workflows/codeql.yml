@@ -3,7 +3,7 @@ name: CodeQL SAST
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
   schedule:
     # Every Monday at 06:00 UTC

@@ -8,228 +8,204 @@
 </script>
 
 <style>
-  /* ── Page header ── */
   .page-header {
-    background: linear-gradient(180deg, rgba(5, 3, 20, 0.98) 0%, rgba(5, 5, 25, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(167, 139, 250, 0.15);
-    padding: 2.5rem 2rem 2rem;
-    position: relative;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .page-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+  .page-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
 
   .page-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.4rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
-    color: #f0ecff;
-    letter-spacing: 3px;
-    margin: 0 0 0.3rem;
-  }
-
-  .page-subtitle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: #a78bfa;
-    letter-spacing: 2px;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
     margin: 0;
+    line-height: 1.1;
   }
 
-  /* ── Main ── */
   main {
-    padding: 2.5rem 2rem;
+    padding: 2.5rem 2rem 4rem;
     max-width: 1100px;
     margin: 0 auto;
   }
 
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: #a78bfa;
-    margin-bottom: 1.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
     text-transform: uppercase;
+    margin-bottom: 1.75rem;
   }
 
-  /* ── Mission strip ── */
   .mission-strip {
-    font-style: italic;
-    font-size: 0.95rem;
-    color: #9d8ec4;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
     margin-bottom: 2.5rem;
     line-height: 1.7;
+    font-style: italic;
   }
 
   /* ── Team grid ── */
   .team-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    margin-bottom: 3.5rem;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 4rem;
   }
 
-  /* ── Member card ── */
   .member-card {
-    background: rgba(5, 3, 20, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(167, 139, 250, 0.25);
-    border-radius: 4px;
+    background: var(--bg);
     padding: 2rem 1.5rem;
     text-align: center;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.08), inset 0 0 20px rgba(167, 139, 250, 0.02);
-    transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.55rem;
+    transition: background 0.2s;
   }
 
-  .member-card:hover {
-    box-shadow: 0 0 30px rgba(167, 139, 250, 0.2), inset 0 0 20px rgba(167, 139, 250, 0.04);
-    transform: translateY(-4px);
-    border-color: rgba(167, 139, 250, 0.5);
-  }
+  .member-card:hover { background: var(--surface); }
 
   .member-avatar {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 2px solid rgba(167, 139, 250, 0.4);
+    border: 1px solid var(--border-active);
     margin-bottom: 0.4rem;
-    transition: all 0.4s ease;
-    box-shadow: 0 0 16px rgba(167, 139, 250, 0.15);
     object-fit: cover;
+    filter: grayscale(20%);
+    transition: filter 0.3s, border-color 0.3s;
   }
 
   .member-card:hover .member-avatar {
-    border-color: #a78bfa;
-    box-shadow: 0 0 24px rgba(167, 139, 250, 0.35);
+    filter: grayscale(0%);
+    border-color: rgba(255, 255, 255, 0.35);
   }
 
   .member-name {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    color: #f0ecff;
+    color: var(--text-primary);
     margin: 0;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
   }
 
   .member-role {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: #a78bfa;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--text-muted);
     letter-spacing: 1.5px;
-    text-shadow: 0 0 6px rgba(167, 139, 250, 0.4);
+    text-transform: uppercase;
   }
 
   .member-bio {
-    font-size: 0.8rem;
-    color: #7d6ea4;
-    line-height: 1.6;
-    margin: 0.3rem 0 0;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0.25rem 0 0;
     text-align: left;
+    opacity: 0.8;
   }
 
   .skills-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.3rem;
     justify-content: center;
     margin-top: 0.2rem;
   }
 
   .skill-chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: #6b5a9e;
-    background: rgba(167, 139, 250, 0.06);
-    border: 1px solid rgba(167, 139, 250, 0.15);
-    border-radius: 2px;
-    padding: 0.15rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.12rem 0.4rem;
     letter-spacing: 0.5px;
   }
 
   .member-links {
     display: flex;
-    gap: 0.6rem;
-    margin-top: 0.4rem;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
   }
 
   .member-link {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: #9d8ec4;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--text-muted);
     text-decoration: none;
     letter-spacing: 1px;
-    padding: 0.25rem 0.6rem;
-    border: 1px solid rgba(167, 139, 250, 0.2);
-    border-radius: 2px;
-    transition: all 0.2s;
+    padding: 0.22rem 0.6rem;
+    border: 1px solid var(--border-active);
+    border-radius: var(--radius);
+    transition: color 0.2s, border-color 0.2s;
   }
 
   .member-link:hover {
-    color: #a78bfa;
-    border-color: rgba(167, 139, 250, 0.5);
-    background: rgba(167, 139, 250, 0.06);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.35);
   }
 
-  /* ── Empty slot card ── */
+  /* ── Empty slot ── */
   .slot-empty {
-    background: rgba(5, 3, 20, 0.4);
-    border: 1px dashed rgba(167, 139, 250, 0.15);
-    border-radius: 4px;
+    background: var(--bg);
+    border: none;
     padding: 2rem 1.5rem;
     text-align: center;
-    opacity: 0.5;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
     min-height: 160px;
   }
 
   .slot-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: #4a4070;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
     letter-spacing: 2px;
+    opacity: 0.4;
   }
 
-  /* ── Responsive ── */
+  .game-of-life-section {
+    margin-top: 1rem;
+  }
+
   @media (max-width: 1000px) {
-    .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  @media (max-width: 600px) {
-    .team-grid {
-      grid-template-columns: 1fr;
-    }
-
-    main { padding: 1.5rem 1rem; }
+  @media (max-width: 640px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .page-header { padding: 2.5rem 1.25rem 2rem; }
+    main { padding: 2rem 1.25rem 3rem; }
   }
 </style>
 
 <div class="page-header">
-  <div class="page-title">TEAM</div>
-  <div class="page-subtitle">// who we are</div>
+  <div class="page-label">// Team</div>
+  <h1 class="page-title">Who We Are</h1>
 </div>
 
 <main>
-  <div class="section-label">// PEOPLE</div>
+  <div class="section-label">People</div>
   <p class="mission-strip">A small group of engineers who build things that actually work.</p>
 
   <div class="team-grid">
@@ -262,6 +238,8 @@
     {/each}
   </div>
 
-  <div class="section-label">// HOW WE WORK</div>
-  <GameOfLife />
+  <div class="section-label">How We Work</div>
+  <div class="game-of-life-section">
+    <GameOfLife />
+  </div>
 </main>

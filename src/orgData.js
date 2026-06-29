@@ -1,10 +1,11 @@
 export const org = {
-  name: 'ChillPickle',
+  name: 'Technology Innovation Labs',
   tagline: 'Building things that actually work.',
-  domain: 'chillpickle.org',
-  email: 'hello@chillpickle.org',
+  domain: 'qtlab.dev',
+  email: 'hello@qtlab.dev',
   github: 'https://github.com/quniv',
-  version: 'v0.2.0',
+  linkedin: 'https://www.linkedin.com/in/qitpy',
+  version: 'v0.3.0',
 };
 
 export const missions = [

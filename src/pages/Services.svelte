@@ -4,167 +4,144 @@
 </script>
 
 <style>
-  /* ── Page header ── */
   .page-header {
-    background: linear-gradient(180deg, rgba(5, 3, 20, 0.98) 0%, rgba(5, 5, 25, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(167, 139, 250, 0.15);
-    padding: 2.5rem 2rem 2rem;
-    position: relative;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .page-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+  .page-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
 
   .page-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.4rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700;
-    color: #f0ecff;
-    letter-spacing: 3px;
-    margin: 0 0 0.3rem;
-  }
-
-  .page-subtitle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: #a78bfa;
-    letter-spacing: 2px;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
     margin: 0;
+    line-height: 1.1;
   }
 
-  /* ── Main ── */
   main {
-    padding: 2.5rem 2rem;
+    padding: 2.5rem 2rem 4rem;
     max-width: 1100px;
     margin: 0 auto;
   }
 
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: #a78bfa;
-    margin-bottom: 1.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
     text-transform: uppercase;
+    margin-bottom: 1.75rem;
   }
 
   /* ── Service cards ── */
   .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-    margin-bottom: 3.5rem;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 4rem;
   }
 
   .service-card {
-    background: rgba(5, 3, 20, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(167, 139, 250, 0.2);
-    border-radius: 4px;
-    padding: 1.8rem;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.06), inset 0 0 20px rgba(167, 139, 250, 0.02);
-    transition: all 0.35s ease;
+    background: var(--bg);
+    padding: 2rem 1.75rem;
+    transition: background 0.2s;
+    position: relative;
   }
 
-  .service-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(167, 139, 250, 0.4);
-    box-shadow: 0 0 30px rgba(167, 139, 250, 0.14), inset 0 0 20px rgba(167, 139, 250, 0.03);
-  }
-
-  @keyframes neonPulse {
-    0%, 100% { box-shadow: 0 0 20px rgba(167, 139, 250, 0.15), inset 0 0 20px rgba(167, 139, 250, 0.03); }
-    50%       { box-shadow: 0 0 35px rgba(167, 139, 250, 0.35), inset 0 0 25px rgba(167, 139, 250, 0.06); }
-  }
+  .service-card:hover { background: var(--surface); }
 
   .service-card.highlight {
-    border-color: rgba(167, 139, 250, 0.5);
-    animation: neonPulse 3s ease-in-out infinite;
+    background: var(--surface);
   }
 
-  .service-card.highlight:hover {
-    animation: none;
-    box-shadow: 0 0 40px rgba(167, 139, 250, 0.4), inset 0 0 25px rgba(167, 139, 250, 0.06);
+  .service-card.highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
   }
 
   .service-icon {
-    font-size: 1.6rem;
-    margin-bottom: 0.8rem;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    display: block;
   }
 
   .service-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #f0ecff;
+    color: var(--text-primary);
     margin: 0 0 0.6rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
   }
 
   .service-desc {
-    font-size: 0.87rem;
-    color: #9d8ec4;
-    line-height: 1.7;
-    margin: 0 0 1rem;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.72;
+    margin: 0 0 1.1rem;
   }
 
   .tags-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.35rem;
   }
 
   .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: #6b5a9e;
-    background: rgba(167, 139, 250, 0.06);
-    border: 1px solid rgba(167, 139, 250, 0.15);
-    border-radius: 2px;
-    padding: 0.15rem 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border-active);
+    border-radius: var(--radius);
+    padding: 0.12rem 0.45rem;
     letter-spacing: 0.5px;
   }
 
-  /* ── Pricing cards ── */
+  /* ── Pricing ── */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
     margin-bottom: 3rem;
   }
 
   .pricing-card {
-    background: rgba(5, 3, 20, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(167, 139, 250, 0.2);
-    border-radius: 4px;
+    background: var(--bg);
     padding: 2rem 1.6rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    transition: all 0.35s ease;
+    gap: 0.75rem;
+    transition: background 0.2s;
     position: relative;
-    overflow: hidden;
   }
 
-  .pricing-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(167, 139, 250, 0.4);
-    box-shadow: 0 0 30px rgba(167, 139, 250, 0.12);
-  }
+  .pricing-card:hover { background: var(--surface); }
 
-  @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+  .pricing-card.highlight {
+    background: var(--surface);
   }
 
   .pricing-card.highlight::before {
@@ -172,38 +149,31 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #a78bfa, #fbbf24, #f472b6, #a78bfa, transparent);
-    background-size: 200% 100%;
-    animation: shimmer 4s linear infinite;
-  }
-
-  .pricing-card.highlight {
-    border-color: rgba(167, 139, 250, 0.35);
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.1);
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
   }
 
   .pricing-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
     letter-spacing: 3px;
-    color: #a78bfa;
+    color: var(--text-muted);
     text-transform: uppercase;
   }
 
   .pricing-price {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    color: #f0ecff;
+    color: var(--text-primary);
     letter-spacing: -0.5px;
     line-height: 1;
   }
 
   .pricing-desc {
-    font-size: 0.85rem;
-    color: #9d8ec4;
-    line-height: 1.6;
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.65;
     margin: 0;
   }
 
@@ -218,8 +188,8 @@
   }
 
   .pricing-bullets li {
-    font-size: 0.83rem;
-    color: #7d6ea4;
+    font-size: 0.82rem;
+    color: var(--text-muted);
     padding-left: 1rem;
     position: relative;
     line-height: 1.5;
@@ -229,21 +199,20 @@
     content: '›';
     position: absolute;
     left: 0;
-    color: #a78bfa;
+    color: var(--text-secondary);
   }
 
   .contact-btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
     letter-spacing: 1.5px;
     padding: 0.5rem 1rem;
     background: transparent;
-    border: none;
+    border: 1px solid var(--border-active);
     cursor: pointer;
-    transition: all 0.2s;
-    border-radius: 0;
-    color: #a78bfa;
-    box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.3);
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    border-radius: var(--radius);
+    color: var(--text-secondary);
     text-decoration: none;
     display: inline-block;
     text-align: center;
@@ -251,77 +220,73 @@
   }
 
   .contact-btn:hover {
-    box-shadow: inset 0 0 0 1px #a78bfa, 0 0 12px rgba(167, 139, 250, 0.2);
-    background: rgba(167, 139, 250, 0.07);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
   }
 
   /* ── Contact strip ── */
   .contact-strip {
-    background: rgba(5, 3, 20, 0.85);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(167, 139, 250, 0.2);
-    border-radius: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     padding: 2.5rem 2rem;
     text-align: center;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.06);
-    margin-bottom: 2rem;
   }
 
   .contact-strip h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
-    color: #f0ecff;
-    margin: 0 0 0.7rem;
-    letter-spacing: 0.5px;
+    color: var(--text-primary);
+    margin: 0 0 0.6rem;
+    letter-spacing: 0.3px;
   }
 
   .contact-strip p {
-    font-size: 0.88rem;
-    color: #9d8ec4;
+    font-size: 0.85rem;
+    color: var(--text-muted);
     margin: 0 0 1.2rem;
-    line-height: 1.6;
+    line-height: 1.65;
   }
 
   .email-link {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    color: #a78bfa;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
     text-decoration: none;
     letter-spacing: 1px;
-    transition: all 0.2s;
+    transition: color 0.2s;
   }
 
-  .email-link:hover {
-    color: #f0ecff;
-    text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
-  }
+  .email-link:hover { color: var(--text-primary); }
 
   .philosophy-note {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: #4a4070;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--text-muted);
     letter-spacing: 2px;
-    margin: 0.8rem 0 0;
+    margin: 0.9rem 0 0;
+    opacity: 0.6;
   }
 
-  /* ── Responsive ── */
   @media (max-width: 900px) {
-    .services-grid  { grid-template-columns: 1fr; }
-    .pricing-grid   { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .pricing-grid  { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 768px) {
-    main { padding: 1.5rem 1rem; }
+    .page-header { padding: 2.5rem 1.25rem 2rem; }
+    main { padding: 2rem 1.25rem 3rem; }
   }
 </style>
 
 <div class="page-header">
-  <div class="page-title">SERVICES / PRICING</div>
-  <div class="page-subtitle">// what we do</div>
+  <div class="page-label">// Services</div>
+  <h1 class="page-title">What We Do</h1>
 </div>
 
 <main>
-  <div class="section-label">// WHAT WE DO</div>
+  <div class="section-label">Services</div>
   <div class="services-grid">
     {#each services as s (s.id)}
       <div class="service-card" class:highlight={s.highlight}>
@@ -337,7 +302,7 @@
     {/each}
   </div>
 
-  <div class="section-label">// PRICING</div>
+  <div class="section-label">Pricing</div>
   <div class="pricing-grid">
     {#each pricing as p (p.id)}
       <div class="pricing-card" class:highlight={p.highlight}>
@@ -349,7 +314,7 @@
             <li>{b}</li>
           {/each}
         </ul>
-        <a class="contact-btn" href="mailto:{org.email}">[→ Contact]</a>
+        <a class="contact-btn" href="mailto:{org.email}">Contact</a>
       </div>
     {/each}
   </div>

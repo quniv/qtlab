@@ -1,207 +1,202 @@
 <!-- src/pages/Home.svelte — Landing page -->
 <script>
+  import { onMount } from 'svelte';
   import { org, missions } from '../orgData.js';
   import TechStack from '../components/TechStack.svelte';
-  import TerminalBoot from '../components/TerminalBoot.svelte';
 
   export let onNavigate = () => {};
+
+  let dotPhase = 0;
+  onMount(() => {
+    const id = setInterval(() => { dotPhase = (dotPhase + 1) % 2; }, 900);
+    return () => clearInterval(id);
+  });
 </script>
 
 <style>
   /* ── Hero ── */
-  header.hero {
-    background: linear-gradient(180deg, rgba(5, 3, 20, 0.98) 0%, rgba(5, 5, 25, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(167, 139, 250, 0.2);
-    padding: 5rem 2rem 4rem;
+  .hero {
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 4rem 2rem 5rem;
   }
 
-  header.hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #a78bfa, #fbbf24, #f472b6, #a78bfa, transparent);
-    background-size: 200% 100%;
-    animation: shimmer 4s linear infinite;
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 2.2rem;
   }
 
-  @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-
-  .org-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    color: #a78bfa;
-    text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
-    margin-bottom: 1.2rem;
-  }
-
-  .org-name {
-    font-size: clamp(2.4rem, 6vw, 4rem);
+  .hero-title {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
     font-weight: 700;
-    color: #f0ecff;
-    letter-spacing: -0.5px;
-    margin-bottom: 1rem;
-    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: -1.5px;
+    line-height: 1.06;
+    margin: 0 0 2rem;
+    max-width: 760px;
   }
 
-  .org-name span {
-    color: #a78bfa;
+  .hero-status {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
   }
 
-  .tagline {
-    font-size: 1.15rem;
-    color: #9d8ec4;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.7;
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex-shrink: 0;
+    transition: opacity 0.5s;
   }
+
+  .dot.dim { opacity: 0.15; }
 
   .cta-group {
     display: flex;
-    gap: 1rem;
-    justify-content: center;
+    gap: 0.9rem;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .cta-btn {
-    display: inline-block;
-    padding: 0.65rem 1.8rem;
-    background: transparent;
-    border: none;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     letter-spacing: 2px;
     text-transform: uppercase;
+    padding: 0.6rem 1.75rem;
+    background: transparent;
+    border: 1px solid var(--border-active);
+    color: var(--text-secondary);
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    border-radius: 0;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    border-radius: var(--radius);
   }
 
-  .cta-btn.primary {
-    color: #a78bfa;
-    box-shadow: 0 0 12px rgba(167, 139, 250, 0.2), inset 0 0 0 1px rgba(167, 139, 250, 0.4);
+  .btn:hover {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 
-  .cta-btn.primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(167, 139, 250, 0.4), inset 0 0 0 1px #a78bfa;
-    background: rgba(167, 139, 250, 0.08);
+  .btn.primary {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: var(--text-primary);
   }
 
-  .cta-btn.secondary {
-    color: #fbbf24;
-    box-shadow: 0 0 12px rgba(251, 191, 36, 0.15), inset 0 0 0 1px rgba(251, 191, 36, 0.3);
+  .btn.primary:hover {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.04);
   }
 
-  .cta-btn.secondary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 25px rgba(251, 191, 36, 0.3), inset 0 0 0 1px #fbbf24;
-    background: rgba(251, 191, 36, 0.06);
-  }
-
-  /* ── Main ── */
-  main {
-    padding: 3rem 2rem;
+  /* ── Sections ── */
+  .section {
     max-width: 1100px;
     margin: 0 auto;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--border);
   }
 
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    color: #a78bfa;
-    margin-bottom: 1.8rem;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
     text-transform: uppercase;
+    margin-bottom: 2.5rem;
   }
 
-  /* ── Mission Cards ── */
+  /* ── Mission grid ── */
   .missions-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 4rem;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
 
   .mission-card {
-    background: rgba(5, 3, 20, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(167, 139, 250, 0.2);
-    border-radius: 4px;
-    padding: 2rem 1.8rem;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.06), inset 0 0 20px rgba(167, 139, 250, 0.02);
-    transition: all 0.4s ease;
+    background: var(--bg);
+    padding: 2rem 1.75rem;
+    transition: background 0.2s;
   }
 
   .mission-card:hover {
-    box-shadow: 0 0 30px rgba(167, 139, 250, 0.18), inset 0 0 20px rgba(167, 139, 250, 0.04);
-    transform: translateY(-4px);
-    border-color: rgba(167, 139, 250, 0.45);
+    background: var(--surface);
   }
 
   .mission-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.1rem;
+    display: block;
   }
 
   .mission-card h3 {
-    font-size: 1rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    color: #f0ecff;
-    margin: 0 0 0.75rem;
-    letter-spacing: 0.5px;
+    color: var(--text-primary);
+    margin: 0 0 0.65rem;
+    letter-spacing: 0.3px;
   }
 
   .mission-card p {
-    font-size: 0.9rem;
-    color: #9d8ec4;
-    line-height: 1.7;
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.75;
     margin: 0;
-  }
-
-  /* ── Stack section ── */
-  .section-stack {
-    margin-bottom: 2rem;
   }
 
   /* ── Footer ── */
   footer {
-    background: rgba(5, 3, 20, 0.95);
-    backdrop-filter: blur(16px);
-    border-top: 1px solid rgba(167, 139, 250, 0.15);
-    color: #4a4070;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
     text-align: center;
-    padding: 1.8rem 2rem;
-    position: relative;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
   }
 
-  footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #a78bfa, #fbbf24, #f472b6, #a78bfa, transparent);
-    background-size: 200% 100%;
-    animation: shimmer 4s linear infinite;
+  .footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text-secondary); }
+
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    opacity: 0.5;
   }
 
   /* ── Responsive ── */
@@ -211,47 +206,48 @@
     }
   }
 
-  @media (max-width: 768px) {
-    header.hero {
-      padding: 4rem 1.5rem 3rem;
-    }
-
-    main {
-      padding: 2rem 1rem;
-    }
+  @media (max-width: 640px) {
+    .hero { padding: 3rem 1.5rem 4rem; }
+    .section { padding: 3rem 1.25rem; }
   }
 </style>
 
-<TerminalBoot />
-
-<header class="hero">
-  <div class="org-label">// CHILLPICKLE.ORG</div>
-  <h1 class="org-name">Chill<span>Pickle</span></h1>
-  <p class="tagline">{org.tagline}</p>
-  <div class="cta-group">
-    <button class="cta-btn primary" on:click={() => onNavigate('work')}>[↗ View Work]</button>
-    <button class="cta-btn secondary" on:click={() => onNavigate('services')}>[→ Get in Touch]</button>
+<section class="hero">
+  <div class="hero-label">QTLAB.DEV</div>
+  <h1 class="hero-title">Technology Innovation Labs</h1>
+  <div class="hero-status">
+    <span class="dot" class:dim={dotPhase === 0}></span>
+    <span>{org.tagline}</span>
+    <span class="dot" class:dim={dotPhase === 1}></span>
   </div>
-</header>
+  <div class="cta-group">
+    <button class="btn primary" on:click={() => onNavigate('work')}>View Work</button>
+    <button class="btn" on:click={() => onNavigate('services')}>Services</button>
+  </div>
+</section>
 
-<main>
-  <div class="section-label">// MISSION</div>
+<div class="section">
+  <div class="section-label">Mission</div>
   <div class="missions-grid">
     {#each missions as m (m.id)}
       <div class="mission-card">
-        <div class="mission-icon">{m.icon}</div>
+        <span class="mission-icon">{m.icon}</span>
         <h3>{m.title}</h3>
         <p>{m.body}</p>
       </div>
     {/each}
   </div>
+</div>
 
-  <div class="section-stack">
-    <div class="section-label">// STACK</div>
-    <TechStack />
-  </div>
-</main>
+<div class="section">
+  <div class="section-label">Stack</div>
+  <TechStack />
+</div>
 
 <footer>
-  <p>© 2025 ChillPickle · Open for work · {org.domain}</p>
+  <div class="footer-links">
+    <a href={org.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href={org.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </div>
+  <div class="footer-copy">© 2026 Technology Innovation Labs</div>
 </footer>

@@ -6,8 +6,8 @@
   const published = labNotes.filter(n => n.status === 'published');
 
   const pendingLines = [
-    '> [ChillPickle] Booting blog engine...',
-    '> [ChillPickle] Scanning lab notes...',
+    '> [QTLAB.DEV] Booting blog engine...',
+    '> [QTLAB.DEV] Scanning lab notes...',
     '> [PENDING] Lab notes — coming soon',
     '> [PENDING] Blog posts — coming soon',
     '> Stand by.',
@@ -33,228 +33,203 @@
 </script>
 
 <style>
-  /* ── Page header ── */
   .page-header {
-    background: linear-gradient(180deg, rgba(5, 3, 20, 0.98) 0%, rgba(5, 5, 25, 0.95) 100%);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(167, 139, 250, 0.15);
-    padding: 2.5rem 2rem 2rem;
-    position: relative;
-  }
-
-  .page-header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
-  }
-
-  .page-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #f0ecff;
-    letter-spacing: 3px;
-    margin: 0 0 0.3rem;
-  }
-
-  .page-subtitle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: #a78bfa;
-    letter-spacing: 2px;
-    margin: 0;
-  }
-
-  /* ── Main ── */
-  main {
-    padding: 2.5rem 2rem;
+    padding: 3.5rem 2rem 2.5rem;
+    border-bottom: 1px solid var(--border);
     max-width: 900px;
     margin: 0 auto;
   }
 
-  /* ── Terminal (pending state) ── */
+  .page-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .page-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  main {
+    padding: 2.5rem 2rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── Terminal ── */
   .terminal-wrap {
-    background: rgba(5, 3, 20, 0.9);
-    border: 1px solid rgba(167, 139, 250, 0.25);
-    border-radius: 4px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 0 30px rgba(167, 139, 250, 0.08);
   }
 
   .terminal-bar {
     display: flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.65rem 1rem;
-    background: rgba(167, 139, 250, 0.06);
-    border-bottom: 1px solid rgba(167, 139, 250, 0.15);
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
   }
 
   .dot {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
+    background: var(--border-active);
   }
 
-  .dot.red    { background: #f472b6; box-shadow: 0 0 6px rgba(244, 114, 182, 0.5); }
-  .dot.yellow { background: #fbbf24; box-shadow: 0 0 6px rgba(251, 191, 36, 0.5); }
-  .dot.green  { background: #a78bfa; box-shadow: 0 0 6px rgba(167, 139, 250, 0.5); }
-
   .terminal-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: #6b5a9e;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
     letter-spacing: 2px;
     margin-left: 0.5rem;
+    text-transform: uppercase;
   }
 
   .terminal-body {
-    padding: 1.5rem 1.5rem 1.2rem;
+    padding: 1.5rem;
     min-height: 160px;
   }
 
   .terminal-line {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem;
-    color: #a78bfa;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
     line-height: 1.9;
     white-space: pre;
   }
 
-  .terminal-line.pending {
-    color: #9d8ec4;
-  }
+  .terminal-line.pending { color: var(--text-muted); }
 
   /* ── Published posts ── */
   .posts-list {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
     margin-bottom: 2rem;
   }
 
   .post-card {
-    background: rgba(5, 3, 20, 0.85);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(167, 139, 250, 0.2);
-    border-radius: 4px;
-    padding: 1.6rem 1.8rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 16px rgba(167, 139, 250, 0.05);
+    background: var(--bg);
+    padding: 1.6rem 1.75rem;
+    transition: background 0.2s;
   }
 
-  .post-card:hover {
-    border-color: rgba(167, 139, 250, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 0 24px rgba(167, 139, 250, 0.12);
-  }
+  .post-card:hover { background: var(--surface); }
 
   .post-meta {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.65rem;
     flex-wrap: wrap;
   }
 
   .post-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    color: #fbbf24;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-muted);
     letter-spacing: 1px;
   }
 
   .post-type {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
     letter-spacing: 1.5px;
-    padding: 0.15rem 0.5rem;
-    border-radius: 2px;
-    color: #a78bfa;
-    background: rgba(167, 139, 250, 0.08);
-    border: 1px solid rgba(167, 139, 250, 0.2);
+    padding: 0.12rem 0.45rem;
+    border-radius: var(--radius);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-active);
   }
 
   .post-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    color: #f0ecff;
+    color: var(--text-primary);
     margin: 0 0 0.5rem;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
     line-height: 1.4;
   }
 
   .post-excerpt {
-    font-size: 0.86rem;
-    color: #9d8ec4;
-    line-height: 1.7;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.72;
     margin: 0 0 0.9rem;
   }
 
   .post-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.3rem;
   }
 
   .post-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.62rem;
-    color: #6b5a9e;
-    background: rgba(167, 139, 250, 0.05);
-    border: 1px solid rgba(167, 139, 250, 0.12);
-    border-radius: 2px;
-    padding: 0.12rem 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.1rem 0.4rem;
     letter-spacing: 0.5px;
   }
 
-  /* ── Cursor ── */
   .cursor-line {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem;
-    color: #4a4070;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
     padding-top: 0.8rem;
     letter-spacing: 1px;
+    opacity: 0.5;
   }
 
   .cursor {
     display: inline-block;
-    width: 8px;
+    width: 7px;
     height: 0.9em;
-    background: #a78bfa;
+    background: var(--text-muted);
     vertical-align: text-bottom;
     margin-left: 2px;
     opacity: 0;
     transition: opacity 0.1s;
   }
 
-  .cursor.visible {
-    opacity: 0.7;
-  }
+  .cursor.visible { opacity: 1; }
 
-  /* ── Responsive ── */
   @media (max-width: 768px) {
-    main { padding: 1.5rem 1rem; }
+    .page-header { padding: 2.5rem 1.25rem 2rem; }
+    main { padding: 2rem 1.25rem 3rem; }
   }
 </style>
 
 <div class="page-header">
-  <div class="page-title">BLOG & LAB NOTES</div>
-  <div class="page-subtitle">// notes.log</div>
+  <div class="page-label">// Blog</div>
+  <h1 class="page-title">Lab Notes</h1>
 </div>
 
 <main>
   {#if published.length === 0}
     <div class="terminal-wrap">
       <div class="terminal-bar">
-        <div class="dot red"></div>
-        <div class="dot yellow"></div>
-        <div class="dot green"></div>
-        <span class="terminal-title">BLOG & LAB NOTES</span>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <span class="terminal-title">Blog & Lab Notes</span>
       </div>
       <div class="terminal-body">
         {#each visibleLines as line, i (i)}
@@ -271,7 +246,7 @@
         <div class="post-card">
           <div class="post-meta">
             <span class="post-date">{post.date}</span>
-            <span class="post-type">[{typeLabel[post.type] ?? post.type.toUpperCase()}]</span>
+            <span class="post-type">{typeLabel[post.type] ?? post.type.toUpperCase()}</span>
           </div>
           <h3 class="post-title">{post.title}</h3>
           <p class="post-excerpt">{post.excerpt}</p>
@@ -285,7 +260,7 @@
     </div>
 
     <div class="cursor-line">
-      > // loading more...<span class="cursor" class:visible={showCursor}></span>
+      > loading more...<span class="cursor" class:visible={showCursor}></span>
     </div>
   {/if}
 </main>

@@ -1,7 +1,7 @@
 export const bootSequence = [
-  '[ChillPickle] Initializing...',
-  '[ChillPickle] Systems online.',
-  '[ChillPickle] Ready to build.',
+  '[qtlab.dev] Initializing...',
+  '[qtlab.dev] Systems online.',
+  '[qtlab.dev] Ready to build.',
   'ACCESS GRANTED — Welcome, visitor.',
   '> _ <',
 ];

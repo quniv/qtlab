@@ -46,15 +46,15 @@ export const team = [
 
 export const projects = [
   {
-    id: 'chillpickle-org',
-    title: 'chillpickle.org',
+    id: 'qtlab-dev',
+    title: 'qtlab.dev',
     tag: 'Open Source',
     tagColor: 'green',
     status: 'live',
     description: 'This site — a Svelte 5 org site deployed on Vercel. A lab for experimenting with frontend design under a dark-universe theme.',
     stack: ['Svelte 5', 'Vite', 'Vercel'],
-    url: 'https://chillpickle.org',
-    repo: 'https://github.com/quniv/chillpickle',
+    url: 'https://qtlab.dev',
+    repo: 'https://github.com/quniv/qtlab',
   },
   {
     id: 'vvn-ce',

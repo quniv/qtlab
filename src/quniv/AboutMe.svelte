@@ -1,11 +1,7 @@
-<!-- src/pages/AboutMe.svelte — Beatless Theme -->
+<!-- src/quniv/AboutMe.svelte — personal page (quniv.qtlab.dev) -->
 <script>
   import { mount, unmount } from 'svelte';
-  import CV from '../CV.svelte';
-  import TerminalBoot from '../components/TerminalBoot.svelte';
-  import GameOfLife from '../components/GameOfLife.svelte';
-  import MotivationSection from '../components/MotivationSection.svelte';
-  import HangingScroll from '../components/HangingScroll.svelte';
+  import CV from './CV.svelte';
   import TechStack from '../components/TechStack.svelte';
 
   let isGeneratingCV = false;
@@ -292,8 +288,6 @@
   }
 </style>
 
-<TerminalBoot />
-
 <header>
   <div class="main-quote">"Bound by journey, blessed by luck."</div>
 </header>
@@ -307,16 +301,12 @@
     </div>
 
     <div class="bio-section">
-      <p>👤</p>
       <p>Not a pro — becoming one.</p>
       <p>A realist and a dreamer.</p>
     </div>
   </div>
 
   <TechStack />
-  <GameOfLife />
-  <MotivationSection />
-  <HangingScroll />
 </main>
 
 <footer>
@@ -326,5 +316,5 @@
   {#if cvError}
     <p class="cv-error">{cvError}</p>
   {/if}
-  <p>© 2024 🤖🔗🍀 · Analog Hack 🤍</p>
+  <p>© 2024 Quyet Doan</p>
 </footer>

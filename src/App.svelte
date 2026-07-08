@@ -6,6 +6,7 @@
   import Services from './pages/Services.svelte';
   import Team from './pages/Team.svelte';
   import Blog from './pages/Blog.svelte';
+  import News from './pages/News.svelte';
 
   let activeTab = 'home';
 </script>
@@ -74,5 +75,7 @@
     <Team />
   {:else if activeTab === 'blog'}
     <Blog />
+  {:else if activeTab === 'news'}
+    <News />
   {/if}
 </div>

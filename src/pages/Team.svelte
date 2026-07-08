@@ -1,7 +1,6 @@
 <!-- src/pages/Team.svelte — Team member cards -->
 <script>
   import { team } from '../orgData.js';
-  import GameOfLife from '../components/GameOfLife.svelte';
 
   const SLOTS = 4;
   const emptySlotIndices = Array.from({ length: SLOTS - team.length }, (_, i) => i);
@@ -184,10 +183,6 @@
     opacity: 0.4;
   }
 
-  .game-of-life-section {
-    margin-top: 1rem;
-  }
-
   @media (max-width: 1000px) {
     .team-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -236,10 +231,5 @@
         <div class="slot-label">+ TBD</div>
       </div>
     {/each}
-  </div>
-
-  <div class="section-label">How We Work</div>
-  <div class="game-of-life-section">
-    <GameOfLife />
   </div>
 </main>

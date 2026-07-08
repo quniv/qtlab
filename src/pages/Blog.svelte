@@ -1,33 +1,8 @@
 <!-- src/pages/Blog.svelte — Lab notes + blog feed -->
 <script>
   import { labNotes } from '../orgData.js';
-  import { onMount } from 'svelte';
 
   const published = labNotes.filter(n => n.status === 'published');
-
-  const pendingLines = [
-    '> [QTLAB.DEV] Booting blog engine...',
-    '> [QTLAB.DEV] Scanning lab notes...',
-    '> [PENDING] Lab notes — coming soon',
-    '> [PENDING] Blog posts — coming soon',
-    '> Stand by.',
-  ];
-
-  let visibleLines = [];
-  let showCursor = true;
-
-  onMount(() => {
-    if (published.length === 0) {
-      pendingLines.forEach((line, i) => {
-        setTimeout(() => {
-          visibleLines = [...visibleLines, line];
-        }, i * 600);
-      });
-    }
-
-    const id = setInterval(() => { showCursor = !showCursor; }, 530);
-    return () => clearInterval(id);
-  });
 
   const typeLabel = { lab: 'LAB', blog: 'BLOG' };
 </script>
@@ -64,53 +39,18 @@
     margin: 0 auto;
   }
 
-  /* ── Terminal ── */
-  .terminal-wrap {
-    background: var(--surface);
+  /* ── Empty state ── */
+  .placeholder {
+    background: var(--surface-raised);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  .terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 1rem;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border-active);
-  }
-
-  .terminal-title {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
     color: var(--text-muted);
-    letter-spacing: 2px;
-    margin-left: 0.5rem;
-    text-transform: uppercase;
-  }
-
-  .terminal-body {
-    padding: 1.5rem;
-    min-height: 160px;
-  }
-
-  .terminal-line {
     font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    line-height: 1.9;
-    white-space: pre;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
   }
-
-  .terminal-line.pending { color: var(--text-muted); }
 
   /* ── Published posts ── */
   .posts-list {
@@ -189,28 +129,6 @@
     letter-spacing: 0.5px;
   }
 
-  .cursor-line {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    padding-top: 0.8rem;
-    letter-spacing: 1px;
-    opacity: 0.5;
-  }
-
-  .cursor {
-    display: inline-block;
-    width: 7px;
-    height: 0.9em;
-    background: var(--text-muted);
-    vertical-align: text-bottom;
-    margin-left: 2px;
-    opacity: 0;
-    transition: opacity 0.1s;
-  }
-
-  .cursor.visible { opacity: 1; }
-
   @media (max-width: 768px) {
     .page-header { padding: 2.5rem 1.25rem 2rem; }
     main { padding: 2rem 1.25rem 3rem; }
@@ -224,22 +142,7 @@
 
 <main>
   {#if published.length === 0}
-    <div class="terminal-wrap">
-      <div class="terminal-bar">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <span class="terminal-title">Blog & Lab Notes</span>
-      </div>
-      <div class="terminal-body">
-        {#each visibleLines as line, i (i)}
-          <div class="terminal-line" class:pending={line.includes('[PENDING]')}>{line}</div>
-        {/each}
-        <div class="cursor-line">
-          &nbsp;<span class="cursor" class:visible={showCursor}></span>
-        </div>
-      </div>
-    </div>
+    <div class="placeholder">No lab notes or blog posts yet — coming soon.</div>
   {:else}
     <div class="posts-list">
       {#each published as post (post.id)}
@@ -257,10 +160,6 @@
           </div>
         </div>
       {/each}
-    </div>
-
-    <div class="cursor-line">
-      > loading more...<span class="cursor" class:visible={showCursor}></span>
     </div>
   {/if}
 </main>

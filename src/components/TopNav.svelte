@@ -6,11 +6,11 @@
 
   const tabs = [
     { id: 'home',     label: 'Home' },
+    { id: 'news',     label: 'News' },
     { id: 'work',     label: 'Work' },
     { id: 'services', label: 'Services' },
     { id: 'team',     label: 'Team' },
     { id: 'blog',     label: 'Blog' },
-    { id: 'news',     label: 'News' },
   ];
 
   function select(id) {

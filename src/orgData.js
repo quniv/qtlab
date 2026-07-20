@@ -49,7 +49,7 @@ export const projects = [
   {
     id: 'qtlab-dev',
     title: 'qtlab.dev',
-    status: 'live',
+    status: 'wip',
     description: 'This site — a Svelte 5 org site deployed on Vercel. A lab for experimenting with frontend design under a dark-universe theme.',
     stack: ['Svelte 5', 'Vite', 'Vercel'],
     url: 'https://qtlab.dev',
@@ -58,7 +58,7 @@ export const projects = [
   {
     id: 'home-argocd',
     title: 'home-argocd',
-    status: 'live',
+    status: 'wip',
     description: 'GitOps source of truth for homelab Kubernetes Infrastructure, managed with Argo CD’s App of Apps pattern, declarative applications, and reproducible infrastructure bootstrap.',
     stack: ['Kubernetes', 'Argo CD', 'Helm', 'Cilium', 'Terraform', 'Infisical'],
     url: 'https://argocd.qtlab.dev/',
@@ -67,7 +67,7 @@ export const projects = [
   {
     id: 'multica-agents-vm',
     title: 'multica-agents-vm',
-    status: 'live',
+    status: 'wip',
     description: 'Applied AI Native working flows with agents - Multica is the future of engineering.',
     stack: ['Terraform', 'KVM/libvirt', 'cloud-init', 'Ubuntu', 'SSH', 'Agent-skills'],
     url: 'https://multica.qtlab.dev/',
@@ -88,7 +88,7 @@ export const projects = [
     status: 'wip',
     description: 'A zero-cost news aggregator that crawls trusted sources daily, uses AI to filter and summarize stories, and publishes a clean digest without ads or noise.',
     stack: ['Python', 'SvelteKit', 'GitHub Actions', 'OpenRouter', 'Cloudflare Pages'],
-    url: 'https://github.com/quniv/veen-news/blob/main/data/latest.json',
+    url: 'https://raw.githubusercontent.com/quniv/veen-news/refs/heads/main/data/latest.json',
     repo: 'https://github.com/quniv/veen-news',
   },
   {

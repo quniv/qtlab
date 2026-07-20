@@ -1,4 +1,4 @@
-<!-- src/pages/Blog.svelte — Lab notes + blog feed -->
+<!-- src/pages/Blog.svelte — Lab notes + blog feed
 <script>
   import { labNotes } from '../orgData.js';
 
@@ -162,4 +162,4 @@
       {/each}
     </div>
   {/if}
-</main>
+</main> -->

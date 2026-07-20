@@ -102,17 +102,6 @@
     background: rgba(250, 204, 21, 0.06);
   }
 
-  .tag-chip {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 1px;
-    padding: 0.18rem 0.5rem;
-    border-radius: var(--radius);
-    text-transform: uppercase;
-    border: 1px solid var(--border-active);
-    color: var(--text-muted);
-  }
-
   .project-desc {
     font-size: 0.84rem;
     color: var(--text-muted);
@@ -204,7 +193,6 @@
         <div class="card-header">
           <h3 class="project-title">{p.title}</h3>
           <span class="status-badge {p.status}">{p.status === 'live' ? '● live' : '○ wip'}</span>
-          <span class="tag-chip">{p.tag}</span>
         </div>
 
         <p class="project-desc">{p.description}</p>

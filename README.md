@@ -5,15 +5,16 @@ Personal website and CV generator built with Svelte 5 + Vite.
 ## Dev
 
 ```bash
-npm run dev
-npm run build
-npm run preview
+bun install
+bun run dev
+bun run build
+bun run preview
 ```
 
 ## Lint
 
 ```bash
-npm run lint
+bun run lint
 ```
 
 ## Structure

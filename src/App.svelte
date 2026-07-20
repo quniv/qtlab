@@ -5,7 +5,6 @@
   import Work from './pages/Work.svelte';
   import Services from './pages/Services.svelte';
   import Team from './pages/Team.svelte';
-  import Blog from './pages/Blog.svelte';
   import News from './pages/News.svelte';
 
   let activeTab = 'home';
@@ -73,8 +72,6 @@
     <Services />
   {:else if activeTab === 'team'}
     <Team />
-  {:else if activeTab === 'blog'}
-    <Blog />
   {:else if activeTab === 'news'}
     <News />
   {/if}

@@ -8,7 +8,7 @@
     { id: 'work',     label: 'Work',       icon: '⚒️' },
     { id: 'services', label: 'Services',   icon: '📦' },
     { id: 'team',     label: 'Team',       icon: '👥' },
-    { id: 'blog',     label: 'Blog & Lab', icon: '📓' },
+    // { id: 'blog',     label: 'Blog & Lab', icon: '📓' },
   ];
 
   function selectTab(id) {

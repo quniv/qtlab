@@ -10,7 +10,7 @@
     { id: 'work',     label: 'Work' },
     { id: 'services', label: 'Services' },
     { id: 'team',     label: 'Team' },
-    { id: 'blog',     label: 'Blog' },
+    // { id: 'blog',     label: 'Blog' },
   ];
 
   function select(id) {

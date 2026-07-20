@@ -1,7 +1,7 @@
 version: 2
 updates:
-  # npm ecosystem — production and dev dependencies grouped separately
-  - package-ecosystem: npm
+  # Bun ecosystem — production and dev dependencies grouped separately
+  - package-ecosystem: bun
     directory: /
     schedule:
       interval: weekly

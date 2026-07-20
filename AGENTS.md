@@ -13,11 +13,11 @@ Static assets live in `public/`, including images in `public/images/` and static
 
 ## Build, Test, and Development Commands
 
-- `npm run dev` starts the Vite development server.
-- `npm run build` creates a production build in `dist/`.
-- `npm run preview` serves the production build locally for verification.
+- `bun run dev` starts the Vite development server.
+- `bun run build` creates a production build in `dist/`.
+- `bun run preview` serves the production build locally for verification.
 
-There is no dedicated test command in `package.json`. Use `npm run build` as baseline validation before submitting changes.
+There is no dedicated test command in `package.json`. Use `bun run build` as baseline validation before submitting changes.
 
 ## Coding Style & Naming Conventions
 
@@ -29,7 +29,7 @@ Global styling is split between `public/global.css` and component-scoped `<style
 
 ## Testing Guidelines
 
-No automated unit or browser test framework is configured. For UI changes, run `npm run build`, then verify locally with `npm run dev` or `npm run preview`.
+No automated unit or browser test framework is configured. For UI changes, run `bun run build`, then verify locally with `bun run dev` or `bun run preview`.
 
 For CV-related changes, also test the “Download CV” button and inspect the generated PDF for page breaks, spacing, and missing content. Existing Svelte accessibility warnings may appear during build; do not add new warnings.
 

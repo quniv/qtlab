@@ -5,13 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```bash
-npm run dev       # start Vite dev server
-npm run build     # production build to dist/
-npm run preview   # serve production build locally
-npm run lint      # ESLint (src/ only)
+bun run dev       # start Vite dev server
+bun run build     # production build to dist/
+bun run preview   # serve production build locally
+bun run lint      # ESLint (src/ only)
 ```
 
-No test framework is configured. Use `npm run build` as baseline validation; test CV generation manually with the "Download CV" button in the browser.
+No test framework is configured. Use `bun run build` as baseline validation; test CV generation manually with the "Download CV" button in the browser.
 
 ## Architecture
 
@@ -48,7 +48,7 @@ src/
 ## CI/CD
 
 Three GitHub Actions workflows on push/PR to `main`:
-- **CI** (`ci.yml`): build + `npm audit --audit-level=high` + ESLint
+- **CI** (`ci.yml`): build + `bun audit --audit-level=high` + ESLint
 - **CodeQL** (`codeql.yml`): SAST on JS/TS, also runs weekly
 - **Dependency Review** (`dependency-review.yml`): blocks PRs with high-severity new deps
 

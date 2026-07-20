@@ -48,8 +48,6 @@ export const projects = [
   {
     id: 'qtlab-dev',
     title: 'qtlab.dev',
-    tag: 'Open Source',
-    tagColor: 'green',
     status: 'live',
     description: 'This site — a Svelte 5 org site deployed on Vercel. A lab for experimenting with frontend design under a dark-universe theme.',
     stack: ['Svelte 5', 'Vite', 'Vercel'],
@@ -59,8 +57,6 @@ export const projects = [
   {
     id: 'vvn-ce',
     title: 'vvn-ce',
-    tag: 'Open Source',
-    tagColor: 'green',
     status: 'wip',
     description: 'Vocabulary Chrome Extension — look up, save, and review words while browsing. MV3 extension backed by a FastAPI + PostgreSQL + Redis API.',
     stack: ['Svelte 5', 'Chrome MV3', 'FastAPI', 'PostgreSQL'],
@@ -68,15 +64,22 @@ export const projects = [
     repo: null,
   },
   {
-    id: 'placeholder-1',
-    title: 'Project TBD',
-    tag: 'Internal',
-    tagColor: 'purple',
+    id: 'veen-news',
+    title: 'Veen News',
     status: 'wip',
-    description: 'Something useful. Coming soon.',
-    stack: [],
+    description: 'A zero-cost news aggregator that crawls trusted sources daily, uses AI to filter and summarize stories, and publishes a clean digest without ads or noise.',
+    stack: ['Python', 'SvelteKit', 'GitHub Actions', 'OpenRouter', 'Cloudflare Pages'],
     url: null,
-    repo: null,
+    repo: 'https://github.com/quniv/veen-news',
+  },
+  {
+    id: 'buildvn',
+    title: 'BuildVN',
+    status: 'wip',
+    description: 'A trust platform for Vietnam\'s startup ecosystem, connecting founders, builders, mentors, and investors through verified profiles and collaboration history.',
+    stack: ['Astro', 'Starlight', 'Mermaid'],
+    url: 'https://buildvn.com',
+    repo: 'https://github.com/quniv/buildvn',
   },
 ];
 

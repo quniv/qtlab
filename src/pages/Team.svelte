@@ -106,6 +106,29 @@
     border: 0;
   }
 
+  .member-profile-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .member-profile-link:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: -3px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .member-avatar {
     width: 80px;
     height: 80px;

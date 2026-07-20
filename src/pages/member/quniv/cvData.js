@@ -2,12 +2,12 @@ export const cvData = {
   name: 'QUYET DOAN',
   title: 'DevSecOps Engineer',
   contact: {
-    email: 'qitpydev@gmail.com',
+    email: 'quniv21@gmail.com',
     phone: '+84-868-260-254',
     location: 'Vietnam',
-    linkedin: 'www.linkedin.com/in/qitpy',
-    github: 'github.com/qitpydev',
-    website: 'qtlab.dev/member/quniv',
+    linkedin: 'www.linkedin.com/in/quniv',
+    github: 'github.com/quniv',
+    website: 'https://qtlab.dev/member/quniv',
   },
 
   summary: `DevOps Engineer with nearly 5 years of technology experience, including 3 years focused on DevOps and cloud infrastructure. Started as a software developer, bringing a developer-first mindset that bridges application delivery and operations. Primarily work with AWS, with hands-on experience in Azure and GCP. Contributed to 10+ projects by architecting CI/CD, improving reliability, optimizing cost, and integrating AI-driven workflows to accelerate deployment troubleshooting and operational automation. Growing toward DevSecOps with active focus on cloud security and secure delivery practices.`,
@@ -120,7 +120,7 @@ export const cvData = {
         'Started as Java Back-end developer building Enterprise Internal Web Application with AI recommendation system for matching employees to projects',
         'Worked as Python Developer solo with US clients to build end-to-end automation tools using AWS ECS, Lambda, RDS, Atlas MongoDB, Airflow, FastAPI',
         'Developed Enterprise Internal Bot to automate NDA signing contracts and generate Job Description files',
-        'Started DevOps role building Enterprise Internal microservices platform using AWS EKS, Terraform, FluxCD, Next.js, NestJS, Java',
+        '',
       ]
     },
   ],

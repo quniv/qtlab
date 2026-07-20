@@ -1,5 +1,6 @@
 <script>
   import { mount, unmount } from 'svelte';
+  import ThemeToggle from '../../../components/ThemeToggle.svelte';
   import CV from './CV.svelte';
   import { cvData as cv } from './cvData.js';
 
@@ -71,6 +72,9 @@
   <header class="site-header">
     <a class="brand" href="/">qtlab.dev</a>
     <span class="route">/ member / quniv</span>
+    <div class="profile-theme-toggle">
+      <ThemeToggle />
+    </div>
   </header>
 
   <main>
@@ -89,7 +93,7 @@
       </div>
 
       <div class="download-area">
-        <button type="button" onclick={downloadCV} disabled={isGeneratingCV} aria-busy={isGeneratingCV}>
+        <button class="download-button" type="button" onclick={downloadCV} disabled={isGeneratingCV} aria-busy={isGeneratingCV}>
           {isGeneratingCV ? 'Generating CV…' : 'Download CV'}
         </button>
         <span>Generated from the information on this page.</span>
@@ -177,12 +181,14 @@
   }
 
   .profile-page {
-    --page: #f2f1ed;
-    --paper: #faf9f6;
-    --ink: #252525;
-    --muted: #696965;
-    --rule: #d8d6cf;
-    --strong-rule: #aaa79e;
+    --page: var(--bg);
+    --paper: var(--surface);
+    --ink: var(--text-primary);
+    --muted: var(--text-muted);
+    --rule: var(--border);
+    --strong-rule: var(--border-active);
+    --primary: var(--accent);
+    --primary-dark: var(--accent-dim);
 
     min-height: 100vh;
     background: var(--page);
@@ -211,7 +217,7 @@
   }
 
   .brand {
-    color: var(--ink);
+    color: var(--primary-dark);
     font-weight: 600;
     text-decoration: none;
   }
@@ -224,6 +230,11 @@
 
   .route {
     color: var(--muted);
+  }
+
+  .profile-theme-toggle {
+    display: flex;
+    margin-left: auto;
   }
 
   main {
@@ -259,7 +270,7 @@
   .summary {
     max-width: 760px;
     margin: 2rem 0 0;
-    color: #444440;
+    color: var(--muted);
     font-size: 1rem;
   }
 
@@ -282,7 +293,8 @@
   .contact-list a:focus-visible,
   footer a:hover,
   footer a:focus-visible {
-    text-decoration-color: var(--ink);
+    color: var(--primary-dark);
+    text-decoration-color: var(--primary);
   }
 
   .download-area {
@@ -292,31 +304,31 @@
     gap: 0.65rem;
   }
 
-  button {
+  .download-button {
     width: 100%;
     min-height: 44px;
-    border: 1px solid var(--ink);
+    border: 1px solid var(--primary);
     border-radius: 2px;
-    background: var(--ink);
-    color: #fff;
+    background: var(--primary);
+    color: var(--on-accent);
     cursor: pointer;
     font: 600 0.75rem 'JetBrains Mono', monospace;
     letter-spacing: 0.05em;
     transition: background 160ms ease, color 160ms ease;
   }
 
-  button:hover:not(:disabled),
-  button:focus-visible {
-    background: transparent;
-    color: var(--ink);
+  .download-button:hover:not(:disabled),
+  .download-button:focus-visible {
+    background: var(--primary-dark);
+    color: var(--on-accent);
   }
 
-  button:focus-visible {
-    outline: 2px solid var(--ink);
+  .download-button:focus-visible {
+    outline: 2px solid var(--primary);
     outline-offset: 3px;
   }
 
-  button:disabled {
+  .download-button:disabled {
     cursor: wait;
     opacity: 0.65;
   }
@@ -329,7 +341,7 @@
 
   .download-error {
     margin: 0;
-    color: #8b2c2c;
+    color: var(--status-error);
     font-size: 0.75rem;
   }
 
@@ -353,12 +365,13 @@
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: var(--primary-dark);
   }
 
   .resume-section p,
   .resume-section li,
   dd {
-    color: #50504c;
+    color: var(--muted);
     font-size: 0.84rem;
   }
 
@@ -527,6 +540,7 @@
   @media print {
     .site-header,
     .download-area,
+    .profile-theme-toggle,
     footer {
       display: none;
     }
@@ -537,6 +551,15 @@
     }
 
     .profile-page {
+      --page: #ffffff;
+      --paper: #ffffff;
+      --ink: #101828;
+      --muted: #667085;
+      --rule: rgba(7, 26, 146, 0.12);
+      --strong-rule: rgba(18, 103, 244, 0.34);
+      --primary: #1267f4;
+      --primary-dark: #071a92;
+      --on-accent: #ffffff;
       background: #fff;
     }
   }

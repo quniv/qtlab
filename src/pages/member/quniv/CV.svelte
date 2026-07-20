@@ -114,7 +114,7 @@
     min-height: 1123px;
     padding: 64px 72px 64px 72px;
     background: #ffffff;
-    color: #1a1a1a;
+    color: #101828;
     font-family: Calibri, 'Segoe UI', Arial, sans-serif;
     font-size: 13.5px;
     line-height: 1.5;
@@ -136,19 +136,19 @@
   .cv-header h1 {
     font-size: 24pt;
     font-weight: 700;
-    color: #1a4fa0;
+    color: #071a92;
     margin: 0 0 2px;
     letter-spacing: 1px;
   }
 
   .cv-subtitle {
-    color: #555555;
+    color: #667085;
     font-size: 12pt;
     margin: 2px 0;
   }
 
   .cv-contact {
-    color: #444444;
+    color: #667085;
     font-size: 9.5pt;
     margin: 2px 0;
   }
@@ -170,7 +170,7 @@
   .cv-section-head h2 {
     font-size: 11pt;
     font-weight: 700;
-    color: #1a4fa0;
+    color: #071a92;
     margin: 0 0 2px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -178,7 +178,7 @@
 
   .cv-section-head hr {
     border: none;
-    border-top: 1.5px solid #1a4fa0;
+    border-top: 1.5px solid #1267f4;
     margin: 0;
   }
 
@@ -221,12 +221,12 @@
 
   .entry-meta {
     font-size: 9.5pt;
-    color: #444444;
+    color: #667085;
     margin-bottom: 3px;
   }
 
   .entry-desc {
-    color: #666666;
+    color: #667085;
     font-size: 9pt;
   }
 

@@ -57,27 +57,13 @@
   }
 
   .service-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 2rem 1.75rem;
     transition: background 0.2s;
     position: relative;
   }
 
-  .service-card:hover { background: var(--surface); }
-
-  .service-card.highlight {
-    background: var(--surface);
-  }
-
-  .service-card.highlight::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.15);
-  }
+  .service-card:hover { background: var(--surface-hover); }
 
   .service-icon {
     font-size: 1.4rem;
@@ -129,7 +115,7 @@
   }
 
   .pricing-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 2rem 1.6rem;
     display: flex;
     flex-direction: column;
@@ -138,10 +124,14 @@
     position: relative;
   }
 
-  .pricing-card:hover { background: var(--surface); }
+  .pricing-card:hover { background: var(--surface-hover); }
 
   .pricing-card.highlight {
-    background: var(--surface);
+    background: var(--surface-highlight);
+  }
+
+  .pricing-card.highlight:hover {
+    background: var(--surface-highlight-hover);
   }
 
   .pricing-card.highlight::before {
@@ -150,8 +140,8 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 2px;
+    background: var(--accent);
   }
 
   .pricing-label {
@@ -220,9 +210,9 @@
   }
 
   .contact-btn:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-dim);
+    border-color: var(--color-primary);
+    background: var(--accent-faint-md);
   }
 
   /* ── Contact strip ── */
@@ -289,7 +279,7 @@
   <div class="section-label">Services</div>
   <div class="services-grid">
     {#each services as s (s.id)}
-      <div class="service-card" class:highlight={s.highlight}>
+      <div class="service-card">
         <div class="service-icon">{s.icon}</div>
         <h3 class="service-title">{s.title}</h3>
         <p class="service-desc">{s.description}</p>

@@ -26,7 +26,7 @@
     background: var(--accent-faint-md);
     color: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px var(--shadow);
   }
 
   .icon-wrap svg {
@@ -49,7 +49,7 @@
 <div class="tech-strip">
   <!-- Kubernetes -->
   <div class="icon-wrap">
-    <img src="https://cdn.simpleicons.org/kubernetes/9d84f5" alt="" />
+    <img src="https://cdn.simpleicons.org/kubernetes/1267f4" alt="" />
   </div>
 
   <!-- AWS -->

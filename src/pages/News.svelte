@@ -206,7 +206,7 @@
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 1.5px;
-    color: #f87171;
+    color: var(--status-error);
     text-transform: uppercase;
     margin: 0 0 0.6rem;
   }
@@ -233,9 +233,9 @@
   }
 
   .retry-button:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-dim);
+    border-color: var(--color-primary);
+    background: var(--accent-faint-md);
   }
 
   /* ── Category pills ── */
@@ -261,14 +261,14 @@
   }
 
   .category-pill:hover {
-    color: var(--text-secondary);
-    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--accent-dim);
+    border-color: var(--color-primary);
   }
 
   .category-pill.active {
-    color: var(--text-primary);
+    color: var(--accent-dim);
     border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--accent-faint-md);
   }
 
   /* ── Article grid ── */
@@ -283,7 +283,7 @@
   }
 
   .article-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
@@ -292,7 +292,7 @@
   }
 
   .article-card:hover {
-    background: var(--surface);
+    background: var(--surface-hover);
   }
 
   .card-meta {

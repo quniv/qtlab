@@ -62,7 +62,7 @@
     display: flex;
     flex-direction: column;
     z-index: 200;
-    box-shadow: 4px 0 32px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 0 32px var(--shadow);
     transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -166,7 +166,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.72);
+    background: rgba(0, 8, 58, 0.72);
     z-index: 199;
   }
 

@@ -16,6 +16,9 @@
       &nbsp;|&nbsp;
       GitHub: <a href={`https://${cv.contact.github}`}>{cv.contact.github}</a>
     </p>
+    <p class="cv-contact">
+      Website: <a href={`https://${cv.contact.website}`}>{cv.contact.website}</a>
+    </p>
   </div>
 
   <!-- PROFESSIONAL SUMMARY -->

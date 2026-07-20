@@ -11,53 +11,9 @@
 </script>
 
 <style>
-  :global(:root) {
-    --bg:             #0a0a0a;
-    --surface:        #111111;
-    --surface-2:      #181818;
-    --border:         rgba(255, 255, 255, 0.07);
-    --border-active:  rgba(255, 255, 255, 0.18);
-
-    --text-primary:   #efefef;
-    --text-secondary: #aaaaaa;
-    --text-muted:     #666666;
-
-    --accent:         #ffffff;
-    --blue:           #3b82f6;
-
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-
-    --nav-height: 56px;
-    --radius:     3px;
-
-    /* compat shims for TechStack & other components */
-    --border-subtle:   var(--border);
-    --radius-md:       var(--radius);
-    --accent-faint:    rgba(255, 255, 255, 0.03);
-    --accent-faint-md: rgba(255, 255, 255, 0.06);
-    --accent-dim:      var(--text-muted);
-  }
-
-  :global(body) {
-    font-family: var(--font-body);
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    color: var(--text-primary);
-    overflow-x: hidden;
-    min-height: 100vh;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  :global(*) {
-    box-sizing: border-box;
-  }
-
   .content {
     padding-top: var(--nav-height);
+    min-height: 100vh;
   }
 </style>
 

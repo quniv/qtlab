@@ -69,7 +69,7 @@
   }
 
   .member-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 2rem 1.5rem;
     position: relative;
     text-align: center;
@@ -81,7 +81,7 @@
     cursor: pointer;
   }
 
-  .member-card:hover { background: var(--surface); }
+  .member-card:hover { background: var(--surface-hover); }
 
   .member-profile-link {
     position: absolute;
@@ -119,7 +119,7 @@
 
   .member-card:hover .member-avatar {
     filter: grayscale(0%);
-    border-color: rgba(255, 255, 255, 0.35);
+    border-color: var(--color-primary);
   }
 
   .member-name {
@@ -186,13 +186,13 @@
   }
 
   .member-link:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.35);
+    color: var(--accent-dim);
+    border-color: var(--color-primary);
   }
 
   /* ── Empty slot ── */
   .slot-empty {
-    background: var(--bg);
+    background: var(--surface);
     border: none;
     padding: 2rem 1.5rem;
     text-align: center;

@@ -3,10 +3,121 @@
   import { projects } from '../orgData.js';
   import { onMount } from 'svelte';
 
-  let showCursor = true;
+  const GITHUB_API_VERSION = '2026-03-10';
+  const dateFormatter = new Intl.DateTimeFormat(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+  const projectRepositories = projects
+    .map((project) => ({
+      id: project.id,
+      repository: parseGitHubRepository(project.repo),
+    }))
+    .filter((project) => project.repository);
+  const repositoryOwners = [...new Set(
+    projectRepositories.map((project) => project.repository.owner)
+  )];
+
+  let showCursor = $state(true);
+  let updatesLoading = $state(true);
+  let projectUpdates = $state.raw([]);
+  let projectsWithUpdates = $derived(
+    projects.map((project) => ({
+      ...project,
+      lastUpdate: projectUpdates.find((update) => update.id === project.id)?.lastUpdate ?? null,
+    }))
+  );
+
+  function parseGitHubRepository(repoUrl) {
+    if (!repoUrl) return null;
+
+    try {
+      const url = new URL(repoUrl);
+      if (url.hostname !== 'github.com') return null;
+
+      const [owner, rawRepo] = url.pathname.split('/').filter(Boolean);
+      if (!owner || !rawRepo) return null;
+
+      return {
+        owner,
+        repo: rawRepo.replace(/\.git$/, ''),
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  async function fetchOwnerRepositories(owner, signal) {
+    try {
+      const response = await fetch(
+        `https://api.github.com/users/${encodeURIComponent(owner)}/repos?per_page=100&type=owner`,
+        {
+          headers: {
+            Accept: 'application/vnd.github+json',
+            'X-GitHub-Api-Version': GITHUB_API_VERSION,
+          },
+          signal,
+        }
+      );
+
+      if (!response.ok) return { owner, repositories: [] };
+
+      const repositoryData = await response.json();
+      return {
+        owner,
+        repositories: Array.isArray(repositoryData) ? repositoryData : [],
+      };
+    } catch {
+      return { owner, repositories: [] };
+    }
+  }
+
+  async function loadProjectUpdates(signal) {
+    const repositoriesByOwner = await Promise.all(
+      repositoryOwners.map((owner) => fetchOwnerRepositories(owner, signal))
+    );
+
+    const updates = projectRepositories.map((project) => {
+      const expectedFullName = `${project.repository.owner}/${project.repository.repo}`.toLowerCase();
+      const ownerData = repositoriesByOwner.find(
+        (entry) => entry.owner === project.repository.owner
+      );
+      const repositoryData = ownerData?.repositories.find(
+        (repository) => repository.full_name?.toLowerCase() === expectedFullName
+      );
+      const lastUpdate = typeof repositoryData?.pushed_at === 'string'
+        ? repositoryData.pushed_at
+        : null;
+
+      return { id: project.id, lastUpdate };
+    });
+
+    if (!signal.aborted) {
+      projectUpdates = updates;
+      updatesLoading = false;
+    }
+  }
+
+  function formatLastUpdate(value) {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? '' : dateFormatter.format(date);
+  }
+
+  function formatUpdateTitle(value) {
+    const date = new Date(value);
+    return Number.isNaN(date.getTime()) ? '' : date.toLocaleString();
+  }
+
   onMount(() => {
+    const abortController = new AbortController();
     const id = setInterval(() => { showCursor = !showCursor; }, 530);
-    return () => clearInterval(id);
+    loadProjectUpdates(abortController.signal);
+
+    return () => {
+      abortController.abort();
+      clearInterval(id);
+    };
   });
 </script>
 
@@ -54,7 +165,7 @@
   }
 
   .project-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
@@ -62,7 +173,7 @@
     transition: background 0.2s;
   }
 
-  .project-card:hover { background: var(--surface); }
+  .project-card:hover { background: var(--surface-hover); }
 
   .card-header {
     display: flex;
@@ -91,15 +202,15 @@
   }
 
   .status-badge.live {
-    color: #4ade80;
-    border: 1px solid rgba(74, 222, 128, 0.25);
-    background: rgba(74, 222, 128, 0.06);
+    color: var(--status-success);
+    border: 1px solid var(--status-success-border);
+    background: var(--status-success-bg);
   }
 
   .status-badge.wip {
-    color: #facc15;
-    border: 1px solid rgba(250, 204, 21, 0.25);
-    background: rgba(250, 204, 21, 0.06);
+    color: var(--status-warning);
+    border: 1px solid var(--status-warning-border);
+    background: var(--status-warning-bg);
   }
 
   .project-desc {
@@ -126,6 +237,26 @@
     letter-spacing: 0.5px;
   }
 
+  .last-update {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .last-update::before {
+    content: '↻';
+    color: var(--accent);
+  }
+
+  .last-update.loading {
+    opacity: 0.55;
+  }
+
   .card-links {
     display: flex;
     gap: 0.6rem;
@@ -146,9 +277,9 @@
   }
 
   .card-link:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.04);
+    color: var(--accent-dim);
+    border-color: var(--color-primary);
+    background: var(--accent-faint-md);
   }
 
   .terminal-footer {
@@ -188,7 +319,7 @@
 
 <main>
   <div class="projects-grid">
-    {#each projects as p (p.id)}
+    {#each projectsWithUpdates as p (p.id)}
       <div class="project-card">
         <div class="card-header">
           <h3 class="project-title">{p.title}</h3>
@@ -203,6 +334,16 @@
               <span class="stack-chip">{s}</span>
             {/each}
           </div>
+        {/if}
+
+        {#if updatesLoading && p.repo}
+          <div class="last-update loading" aria-hidden="true">Checking activity…</div>
+        {:else if p.lastUpdate}
+          <time
+            class="last-update"
+            datetime={p.lastUpdate}
+            title={formatUpdateTitle(p.lastUpdate)}
+          >Last updated {formatLastUpdate(p.lastUpdate)}</time>
         {/if}
 
         {#if p.url || p.repo}
@@ -220,6 +361,6 @@
   </div>
 
   <div class="terminal-footer">
-    > more projects loading...<span class="cursor" class:visible={showCursor}></span>
+    > shipping beats perfection...<span class="cursor" class:visible={showCursor}></span>
   </div>
 </main>

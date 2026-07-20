@@ -65,12 +65,12 @@
   }
 
   .post-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 1.6rem 1.75rem;
     transition: background 0.2s;
   }
 
-  .post-card:hover { background: var(--surface); }
+  .post-card:hover { background: var(--surface-hover); }
 
   .post-meta {
     display: flex;

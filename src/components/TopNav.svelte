@@ -1,5 +1,7 @@
 <!-- src/components/TopNav.svelte — Minimal top navigation -->
 <script>
+  import ThemeToggle from './ThemeToggle.svelte';
+
   export let activeTab = 'home';
 
   let mobileOpen = false;
@@ -26,10 +28,10 @@
     left: 0;
     right: 0;
     height: var(--nav-height);
-    background: rgba(10, 10, 10, 0.92);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--nav-border);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,7 +43,7 @@
     font-family: var(--font-mono);
     font-size: 0.7rem;
     letter-spacing: 4px;
-    color: var(--text-muted);
+    color: var(--nav-text);
     text-transform: uppercase;
     background: none;
     border: none;
@@ -50,7 +52,13 @@
     transition: color 0.2s;
   }
 
-  .brand:hover { color: var(--text-secondary); }
+  .brand:hover { color: var(--nav-text-active); }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
 
   .nav-links {
     display: flex;
@@ -62,7 +70,7 @@
     font-family: var(--font-mono);
     font-size: 0.68rem;
     letter-spacing: 2px;
-    color: var(--text-muted);
+    color: var(--nav-text);
     text-transform: uppercase;
     background: none;
     border: none;
@@ -72,15 +80,15 @@
     border-radius: var(--radius);
   }
 
-  .nav-link:hover   { color: var(--text-secondary); }
-  .nav-link.active  { color: var(--text-primary); }
+  .nav-link:hover   { color: var(--nav-text-hover); }
+  .nav-link.active  { color: var(--nav-text-active); }
 
   /* Mobile */
   .hamburger {
     display: none;
     background: none;
-    border: 1px solid var(--border-active);
-    color: var(--text-secondary);
+    border: 1px solid var(--nav-control-border);
+    color: var(--nav-text-active);
     font-size: 1rem;
     line-height: 1;
     padding: 0.35rem 0.55rem;
@@ -90,8 +98,8 @@
   }
 
   .hamburger:hover {
-    border-color: var(--accent);
-    color: var(--text-primary);
+    border-color: var(--color-primary-light);
+    color: var(--nav-text-active);
   }
 
   .mobile-menu {
@@ -99,8 +107,8 @@
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background: #0a0a0a;
-    border-bottom: 1px solid var(--border);
+    background: var(--nav-menu-bg);
+    border-bottom: 1px solid var(--nav-border);
     padding: 0.75rem 1rem;
     display: flex;
     flex-direction: column;
@@ -112,7 +120,7 @@
     font-family: var(--font-mono);
     font-size: 0.72rem;
     letter-spacing: 2px;
-    color: var(--text-muted);
+    color: var(--nav-text);
     text-transform: uppercase;
     background: none;
     border: none;
@@ -123,8 +131,8 @@
     border-radius: var(--radius);
   }
 
-  .mobile-link:hover  { color: var(--text-secondary); }
-  .mobile-link.active { color: var(--text-primary); }
+  .mobile-link:hover  { color: var(--nav-text-hover); }
+  .mobile-link.active { color: var(--nav-text-active); }
 
   @media (max-width: 640px) {
     .nav-links  { display: none; }
@@ -135,21 +143,25 @@
 <nav>
   <button class="brand" on:click={() => select('home')}>QTLAB.DEV</button>
 
-  <div class="nav-links">
-    {#each tabs as tab (tab.id)}
-      <button
-        class="nav-link"
-        class:active={activeTab === tab.id}
-        on:click={() => select(tab.id)}
-      >{tab.label}</button>
-    {/each}
-  </div>
+  <div class="nav-actions">
+    <div class="nav-links">
+      {#each tabs as tab (tab.id)}
+        <button
+          class="nav-link"
+          class:active={activeTab === tab.id}
+          on:click={() => select(tab.id)}
+        >{tab.label}</button>
+      {/each}
+    </div>
 
-  <button
-    class="hamburger"
-    on:click={() => (mobileOpen = !mobileOpen)}
-    aria-label="Toggle menu"
-  >{mobileOpen ? '✕' : '☰'}</button>
+    <ThemeToggle />
+
+    <button
+      class="hamburger"
+      on:click={() => (mobileOpen = !mobileOpen)}
+      aria-label="Toggle menu"
+    >{mobileOpen ? '✕' : '☰'}</button>
+  </div>
 </nav>
 
 {#if mobileOpen}

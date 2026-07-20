@@ -23,13 +23,14 @@
     justify-content: center;
     text-align: center;
     padding: 4rem 2rem 5rem;
+    background: var(--background-gradient);
   }
 
   .hero-label {
     font-family: var(--font-mono);
     font-size: 0.68rem;
     letter-spacing: 5px;
-    color: var(--text-muted);
+    color: rgba(245, 247, 250, 0.72);
     text-transform: uppercase;
     margin-bottom: 2.2rem;
   }
@@ -37,7 +38,7 @@
   .hero-title {
     font-size: clamp(2.8rem, 7vw, 5.5rem);
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--color-surface);
     letter-spacing: -1.5px;
     line-height: 1.06;
     margin: 0 0 2rem;
@@ -51,7 +52,7 @@
     font-family: var(--font-mono);
     font-size: 0.68rem;
     letter-spacing: 4px;
-    color: var(--text-muted);
+    color: rgba(245, 247, 250, 0.78);
     text-transform: uppercase;
     margin-bottom: 3.5rem;
   }
@@ -60,7 +61,7 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: var(--blue);
+    background: var(--color-primary-light);
     flex-shrink: 0;
     transition: opacity 0.5s;
   }
@@ -81,26 +82,29 @@
     text-transform: uppercase;
     padding: 0.6rem 1.75rem;
     background: transparent;
-    border: 1px solid var(--border-active);
-    color: var(--text-secondary);
+    border: 1px solid rgba(245, 247, 250, 0.46);
+    color: var(--color-background);
     cursor: pointer;
     transition: color 0.2s, border-color 0.2s, background 0.2s;
     border-radius: var(--radius);
   }
 
   .btn:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--color-surface);
+    border-color: var(--color-surface);
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .btn.primary {
-    border-color: rgba(255, 255, 255, 0.35);
-    color: var(--text-primary);
+    border-color: var(--color-surface);
+    background: var(--color-surface);
+    color: var(--color-primary-dark);
   }
 
   .btn.primary:hover {
-    border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-background);
+    background: var(--color-background);
+    color: var(--color-primary);
   }
 
   /* ── Sections ── */
@@ -132,13 +136,13 @@
   }
 
   .mission-card {
-    background: var(--bg);
+    background: var(--surface);
     padding: 2rem 1.75rem;
     transition: background 0.2s;
   }
 
   .mission-card:hover {
-    background: var(--surface);
+    background: var(--surface-hover);
   }
 
   .mission-icon {

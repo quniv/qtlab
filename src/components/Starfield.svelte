@@ -37,9 +37,9 @@
       for (const s of stars) {
         const alpha = s.base * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
         let color;
-        if (s.hue === 'warm') color = `rgba(210, 162, 50, ${alpha})`;
-        else if (s.hue === 'blue') color = `rgba(130, 175, 240, ${alpha})`;
-        else color = `rgba(230, 226, 248, ${alpha})`;
+        if (s.hue === 'warm') color = `rgba(0, 132, 255, ${alpha})`;
+        else if (s.hue === 'blue') color = `rgba(18, 103, 244, ${alpha})`;
+        else color = `rgba(245, 247, 250, ${alpha})`;
 
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);

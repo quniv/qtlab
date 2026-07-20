@@ -7,6 +7,7 @@ export const cvData = {
     location: 'Vietnam',
     linkedin: 'www.linkedin.com/in/qitpy',
     github: 'github.com/qitpydev',
+    website: 'qtlab.dev/member/quniv',
   },
 
   summary: `DevOps Engineer with nearly 5 years of technology experience, including 3 years focused on DevOps and cloud infrastructure. Started as a software developer, bringing a developer-first mindset that bridges application delivery and operations. Primarily work with AWS, with hands-on experience in Azure and GCP. Contributed to 10+ projects by architecting CI/CD, improving reliability, optimizing cost, and integrating AI-driven workflows to accelerate deployment troubleshooting and operational automation. Growing toward DevSecOps with active focus on cloud security and secure delivery practices.`,

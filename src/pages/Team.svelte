@@ -71,15 +71,40 @@
   .member-card {
     background: var(--bg);
     padding: 2rem 1.5rem;
+    position: relative;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.55rem;
     transition: background 0.2s;
+    cursor: pointer;
   }
 
   .member-card:hover { background: var(--surface); }
+
+  .member-profile-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .member-profile-link:focus-visible {
+    outline: 2px solid var(--text-primary);
+    outline-offset: -3px;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   .member-avatar {
     width: 80px;
@@ -144,6 +169,8 @@
     display: flex;
     gap: 0.5rem;
     margin-top: 0.35rem;
+    position: relative;
+    z-index: 2;
   }
 
   .member-link {
@@ -205,7 +232,10 @@
 
   <div class="team-grid">
     {#each team as m (m.id)}
-      <div class="member-card">
+      <article class="member-card">
+        <a class="member-profile-link" href={m.profileUrl} target="_blank" rel="noopener noreferrer">
+          <span class="visually-hidden">Open {m.name}'s profile in a new tab</span>
+        </a>
         <img class="member-avatar" src={m.avatar} alt={m.name} />
         <h3 class="member-name">{m.name}</h3>
         <div class="member-role">{m.role}</div>
@@ -223,7 +253,7 @@
             <a class="member-link" href={m.links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           {/if}
         </div>
-      </div>
+      </article>
     {/each}
 
     {#each emptySlotIndices as idx (idx)}

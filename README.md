@@ -19,7 +19,14 @@ bun run lint
 
 ## Structure
 
-- `src/cvData.js` — CV content
-- `src/CV.svelte` — CV renderer
-- `src/pages/AboutMe.svelte` — About page with CV download
+- `src/pages/member/quniv/cvData.js` — shared CV content
+- `src/pages/member/quniv/CV.svelte` — generated PDF renderer
+- `src/pages/member/quniv/Profile.svelte` — `/member/quniv` profile and CV download page
 - `src/pages/News.svelte` — News feed
+
+## Deployment
+
+The site is deployed as one Vite application on Vercel. `vercel.json` rewrites
+direct requests to `index.html`, allowing `/member/quniv` to load as a client-side
+route. Attach `qtlab.dev` to the Vercel project and deploy the `main` branch; no
+separate project or subdomain is required for the member page.

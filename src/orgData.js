@@ -37,6 +37,7 @@ export const team = [
     avatar: 'images/avatar_022025.jpeg',
     bio: 'Nearly 5 years in technology, 3 focused on cloud infrastructure and delivery. Started as a software developer — still thinks like one. AWS-primary, with hands-on Azure and GCP. Built CI/CD for 10+ projects, hardened cloud environments, and integrated AI-assisted workflows into operational automation.',
     skills: ['AWS', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Python', 'Security'],
+    profileUrl: '/member/quniv',
     links: {
       github: 'https://github.com/qitpydev',
       linkedin: 'https://www.linkedin.com/in/qitpy',
@@ -55,13 +56,31 @@ export const projects = [
     repo: 'https://github.com/quniv/qtlab',
   },
   {
+    id: 'home-argocd',
+    title: 'home-argocd',
+    status: 'live',
+    description: 'GitOps source of truth for homelab Kubernetes Infrastructure, managed with Argo CD’s App of Apps pattern, declarative applications, and reproducible infrastructure bootstrap.',
+    stack: ['Kubernetes', 'Argo CD', 'Helm', 'Cilium', 'Terraform', 'Infisical'],
+    url: 'https://argocd.qtlab.dev/',
+    repo: 'https://github.com/quniv/home-argocd',
+  },
+  {
+    id: 'multica-agents-vm',
+    title: 'multica-agents-vm',
+    status: 'live',
+    description: 'Applied AI Native working flows with agents - Multica is the future of engineering.',
+    stack: ['Terraform', 'KVM/libvirt', 'cloud-init', 'Ubuntu', 'SSH', 'Agent-skills'],
+    url: 'https://multica.qtlab.dev/',
+    repo: 'https://github.com/quniv/multica-agents-vm',
+  },
+  {
     id: 'vvn-ce',
     title: 'vvn-ce',
     status: 'wip',
     description: 'Vocabulary Chrome Extension — look up, save, and review words while browsing. MV3 extension backed by a FastAPI + PostgreSQL + Redis API.',
     stack: ['Svelte 5', 'Chrome MV3', 'FastAPI', 'PostgreSQL'],
     url: null,
-    repo: null,
+    repo: 'https://github.com/quniv/vvn-ce',
   },
   {
     id: 'veen-news',
@@ -69,7 +88,7 @@ export const projects = [
     status: 'wip',
     description: 'A zero-cost news aggregator that crawls trusted sources daily, uses AI to filter and summarize stories, and publishes a clean digest without ads or noise.',
     stack: ['Python', 'SvelteKit', 'GitHub Actions', 'OpenRouter', 'Cloudflare Pages'],
-    url: null,
+    url: 'https://github.com/quniv/veen-news/blob/main/data/latest.json',
     repo: 'https://github.com/quniv/veen-news',
   },
   {
@@ -78,7 +97,7 @@ export const projects = [
     status: 'wip',
     description: 'A trust platform for Vietnam\'s startup ecosystem, connecting founders, builders, mentors, and investors through verified profiles and collaboration history.',
     stack: ['Astro', 'Starlight', 'Mermaid'],
-    url: 'https://buildvn.com',
+    url: 'https://docs.buildvn.com',
     repo: 'https://github.com/quniv/buildvn',
   },
 ];

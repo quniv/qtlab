@@ -1,107 +1,119 @@
 <script>
   import { cvData as cv } from './cvData.js';
+  import { displayExternalUrl, normalizeExternalUrl, phoneHref } from './contact.js';
+
+  const experience = cv.experience.filter((entry) => entry.resume?.section === 'experience');
+  const selectedWork = cv.experience.filter((entry) => entry.resume?.section === 'selected-work');
 </script>
 
-<div class="cv-root">
-
-  <!-- HEADER -->
-  <div class="cv-header">
-    <h1>{cv.name}</h1>
-    <p class="cv-subtitle">{cv.title}</p>
-    <p class="cv-contact">
-      {cv.contact.email} &nbsp;|&nbsp; {cv.contact.phone} &nbsp;|&nbsp; {cv.contact.location}
-    </p>
-    <p class="cv-contact">
-      LinkedIn: <a href={`https://${cv.contact.linkedin}`}>{cv.contact.linkedin}</a>
-      &nbsp;|&nbsp;
-      GitHub: <a href={`https://${cv.contact.github}`}>{cv.contact.github}</a>
-    </p>
-    <p class="cv-contact">
-      Website: <a href={`https://${cv.contact.website}`}>{cv.contact.website}</a>
-    </p>
-  </div>
-
-  <!-- PROFESSIONAL SUMMARY -->
-  <section>
-    <div class="cv-section-head">
-      <h2>Professional Summary</h2>
-      <hr />
+<div class="cv-root" data-cv-page>
+  <header class="cv-header">
+    <div class="identity">
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h1>{cv.name}</h1>
+      <p class="cv-title">{cv.title}</p>
+      <p class="location">{cv.contact.location}</p>
     </div>
-    <p class="cv-summary">{cv.summary}</p>
+
+    <address class="contact-list" aria-label="Contact information">
+      <a href={`mailto:${cv.contact.email}`}>{cv.contact.email}</a>
+      <a href={phoneHref(cv.contact.phone)}>{cv.contact.phone}</a>
+      <a href={normalizeExternalUrl(cv.contact.linkedin)}>{displayExternalUrl(cv.contact.linkedin)}</a>
+      <a href={normalizeExternalUrl(cv.contact.github)}>{displayExternalUrl(cv.contact.github)}</a>
+      <a href={normalizeExternalUrl(cv.contact.website)}>{displayExternalUrl(cv.contact.website)}</a>
+    </address>
+  </header>
+
+  <section class="summary-section" aria-labelledby="cv-summary-heading">
+    <div class="section-heading">
+      <h2 id="cv-summary-heading">Profile</h2>
+      <span></span>
+    </div>
+    <p class="summary">{cv.summary}</p>
   </section>
 
-  <!-- TECHNICAL SKILLS -->
-  <section>
-    <div class="cv-section-head">
-      <h2>Technical Skills</h2>
-      <hr />
+  <section aria-labelledby="cv-skills-heading">
+    <div class="section-heading">
+      <h2 id="cv-skills-heading">Core Expertise</h2>
+      <span></span>
     </div>
-    {#each cv.skills as group (group.group)}
-      <div class="skill-group-label">{group.group}</div>
-      {#each group.items as skill (skill.label)}
-        <div class="skill-row">
-          <span class="skill-bullet">&bull;</span>
-          <span><strong>{skill.label}:</strong> {skill.detail}</span>
+    <div class="skills-grid">
+      {#each cv.resume.skills as skill (skill.label)}
+        <div class="skill-item">
+          <h3>{skill.label}</h3>
+          <p>{skill.detail}</p>
         </div>
       {/each}
-    {/each}
+    </div>
   </section>
 
-  <!-- PROFESSIONAL EXPERIENCE -->
-  <section>
-    <div class="cv-section-head">
-      <h2>Professional Experience</h2>
-      <hr />
+  <section aria-labelledby="cv-experience-heading">
+    <div class="section-heading">
+      <h2 id="cv-experience-heading">Professional Experience</h2>
+      <span></span>
     </div>
-    {#each cv.experience as job (job.title + job.company)}
-      <div class="entry">
-        <div class="entry-title">{job.title}</div>
-        <div class="entry-meta">
-          <em>{job.company}</em> &nbsp;|&nbsp; {job.period}
-          {#if job.description}<br/><em class="entry-desc">{job.description}</em>{/if}
-        </div>
-        {#if job.bullets.length}
+
+    <div class="entries">
+      {#each experience as job (job.id)}
+        <article class="entry">
+          <header class="entry-header">
+            <div>
+              <h3>{job.title}</h3>
+              <p class="company">{job.company}</p>
+            </div>
+            <p class="period">{job.period}</p>
+          </header>
+          <p class="stack">{job.resume.stack}</p>
           <ul>
-            {#each job.bullets as b (b)}
-              <li>{b}</li>
+            {#each job.bullets as bullet (bullet)}
+              <li>{bullet}</li>
             {/each}
           </ul>
-        {/if}
-      </div>
+        </article>
+      {/each}
+    </div>
+  </section>
+
+  <section aria-labelledby="cv-work-heading">
+    <div class="section-heading">
+      <h2 id="cv-work-heading">Selected Engineering Work</h2>
+      <span></span>
+    </div>
+
+    {#each selectedWork as project (project.id)}
+      <article class="entry selected-work">
+        <header class="entry-header">
+          <div>
+            <h3>{project.title}</h3>
+            <p class="company">{project.company}</p>
+          </div>
+          <p class="period">{project.period}</p>
+        </header>
+        <p class="stack">{project.resume.stack}</p>
+        <ul>
+          {#each project.bullets as bullet (bullet)}
+            <li>{bullet}</li>
+          {/each}
+        </ul>
+      </article>
     {/each}
   </section>
 
-  <!-- EDUCATION -->
-  <section>
-    <div class="cv-section-head">
-      <h2>Education</h2>
-      <hr />
-    </div>
-    <div class="skill-row">
-      <span class="skill-bullet">&bull;</span>
+  <footer class="cv-footer">
+    <div>
+      <strong>Education</strong>
       <span>{cv.education}</span>
     </div>
-  </section>
-
-  <!-- ADDITIONAL INFORMATION -->
-  <section>
-    <div class="cv-section-head">
-      <h2>Additional Information</h2>
-      <hr />
+    <div class="language">
+      <strong>Language</strong>
+      <span>{cv.resume.language}</span>
     </div>
-    {#each cv.additional as line (line)}
-      <div class="skill-row">
-        <span class="skill-bullet">&bull;</span>
-        <span>{line}</span>
-      </div>
-    {/each}
-  </section>
-
+  </footer>
 </div>
 
 <style>
-  /* Override the cyberpunk global rule that sets position:relative on all elements */
   .cv-root :global(*) {
+    box-sizing: border-box;
     position: static !important;
     z-index: auto !important;
     animation: none !important;
@@ -110,144 +122,248 @@
   }
 
   .cv-root {
+    box-sizing: border-box;
     width: 794px;
-    min-height: 1123px;
-    padding: 64px 72px 64px 72px;
+    height: 1122px;
+    overflow: hidden;
+    padding: 42px 48px 36px;
     background: #ffffff;
     color: #101828;
-    font-family: Calibri, 'Segoe UI', Arial, sans-serif;
-    font-size: 13.5px;
-    line-height: 1.5;
-    box-sizing: border-box;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
   }
 
-  :global(.pdf-export) .cv-root {
-    min-height: auto;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  /* ── Header ── */
   .cv-header {
-    text-align: center;
-    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 32px;
+    align-items: end;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #1267f4;
   }
 
-  .cv-header h1 {
-    font-size: 24pt;
+  .eyebrow {
+    margin: 0 0 3px;
+    color: #1267f4;
+    font-size: 7.6pt;
     font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
     color: #071a92;
-    margin: 0 0 2px;
-    letter-spacing: 1px;
+    font-size: 25pt;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.03;
   }
 
-  .cv-subtitle {
-    color: #667085;
+  .cv-title {
+    margin: 5px 0 0;
+    color: #344054;
     font-size: 12pt;
-    margin: 2px 0;
+    font-weight: 650;
   }
 
-  .cv-contact {
+  .location {
+    margin: 2px 0 0;
     color: #667085;
-    font-size: 9.5pt;
-    margin: 2px 0;
+    font-size: 8.2pt;
   }
 
-  .cv-contact a {
-    color: inherit;
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin: 0;
+    font-size: 8.4pt;
+    font-style: normal;
+    line-height: 1.34;
+  }
+
+  .contact-list a {
+    color: #344054;
     text-decoration: none;
   }
 
-  /* ── Section headers ── */
   section {
-    margin-bottom: 14px;
+    margin-top: 15px;
   }
 
-  .cv-section-head {
-    margin-bottom: 6px;
+  .summary-section {
+    margin-top: 15px;
   }
 
-  .cv-section-head h2 {
-    font-size: 11pt;
-    font-weight: 700;
-    color: #071a92;
-    margin: 0 0 2px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  .section-heading {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
   }
 
-  .cv-section-head hr {
-    border: none;
-    border-top: 1.5px solid #1267f4;
+  .section-heading h2 {
     margin: 0;
+    color: #071a92;
+    font-size: 9.2pt;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
   }
 
-  /* ── Summary ── */
-  .cv-summary {
-    margin: 6px 0 0;
-    font-size: 10pt;
-    text-align: justify;
+  .section-heading span {
+    height: 1px;
+    background: #d7e3fb;
   }
 
-  /* ── Skills ── */
-  .skill-group-label {
-    font-weight: 700;
-    font-size: 10pt;
-    margin: 6px 0 2px;
+  .summary {
+    margin: 0;
+    color: #344054;
+    font-size: 9pt;
+    line-height: 1.45;
   }
 
-  .skill-row {
-    display: flex;
-    gap: 6px;
-    margin: 1px 0;
-    font-size: 10pt;
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 7px;
   }
 
-  .skill-bullet {
-    flex-shrink: 0;
+  .skill-item {
+    display: grid;
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 7px;
     padding-left: 8px;
+    border-left: 2px solid #d7e3fb;
   }
 
-  /* ── Experience / Projects ── */
+  .skill-item h3,
+  .skill-item p {
+    margin: 0;
+    font-size: 8.1pt;
+    line-height: 1.34;
+  }
+
+  .skill-item h3 {
+    color: #071a92;
+    font-weight: 750;
+  }
+
+  .skill-item p {
+    color: #475467;
+  }
+
+  .entries {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .entry {
-    margin-bottom: 10px;
+    break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .entry-title {
+  .entry-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .entry-header h3,
+  .company,
+  .period,
+  .stack {
+    margin: 0;
+  }
+
+  .entry-header h3 {
+    display: inline;
+    color: #101828;
+    font-size: 9.7pt;
+    font-weight: 800;
+  }
+
+  .company {
+    display: inline;
+    margin-left: 5px;
+    color: #1267f4;
+    font-size: 8.8pt;
     font-weight: 700;
-    font-size: 10.5pt;
   }
 
-  .entry-meta {
-    font-size: 9.5pt;
-    color: #667085;
-    margin-bottom: 3px;
+  .company::before {
+    content: '· ';
+    color: #98a2b3;
   }
 
-  .entry-desc {
+  .period {
     color: #667085;
-    font-size: 9pt;
+    font-size: 8.2pt;
+    font-weight: 650;
+    white-space: nowrap;
+  }
+
+  .stack {
+    margin-top: 2px;
+    color: #667085;
+    font-size: 6.8pt;
+    line-height: 1.22;
   }
 
   ul {
-    margin: 2px 0 0 8px;
-    padding: 0;
-    list-style: none;
+    margin: 2px 0 0;
+    padding-left: 15px;
+    list-style: disc;
   }
 
-  ul li {
-    font-size: 10pt;
-    margin-bottom: 1px;
-    padding-left: 12px;
-    text-indent: -12px;
+  li {
+    margin: 1px 0;
+    padding-left: 1px;
+    color: #344054;
+    font-size: 8.1pt;
+    line-height: 1.3;
   }
 
-  ul li::before {
-    content: '\2022  ';
+  li::marker {
+    color: #1267f4;
+    font-size: 0.8em;
   }
 
-  p {
-    margin: 3px 0;
+  .selected-work {
+    padding: 9px 10px;
+    border: 1px solid #d7e3fb;
+    background: #f8faff;
+  }
+
+  .cv-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: 24px;
+    margin-top: 15px;
+    padding-top: 9px;
+    border-top: 1px solid #d7e3fb;
+    color: #475467;
+    font-size: 8.1pt;
+  }
+
+  .cv-footer div {
+    display: flex;
+    gap: 6px;
+  }
+
+  .cv-footer strong {
+    color: #071a92;
+  }
+
+  .language {
+    justify-content: flex-end;
   }
 </style>

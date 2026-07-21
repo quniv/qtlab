@@ -1,15 +1,19 @@
 <script>
-  import { mount, unmount } from 'svelte';
+  import { mount, tick, unmount } from 'svelte';
   import ThemeToggle from '../../../components/ThemeToggle.svelte';
   import CV from './CV.svelte';
   import { cvData as cv } from './cvData.js';
+  import { normalizeExternalUrl, phoneHref } from './contact.js';
 
   let isGeneratingCV = $state(false);
   let cvError = $state('');
 
-  const websiteUrl = `https://${cv.contact.website}`;
-  const linkedinUrl = `https://${cv.contact.linkedin}`;
-  const githubUrl = `https://${cv.contact.github}`;
+  const CV_WIDTH = 794;
+  const CV_HEIGHT = 1122;
+  const websiteUrl = normalizeExternalUrl(cv.contact.website);
+  const linkedinUrl = normalizeExternalUrl(cv.contact.linkedin);
+  const githubUrl = normalizeExternalUrl(cv.contact.github);
+  const telephoneUrl = phoneHref(cv.contact.phone);
 
   async function downloadCV() {
     if (isGeneratingCV) return;
@@ -22,8 +26,8 @@
     Object.assign(exportContainer.style, {
       position: 'absolute',
       top: '0',
-      left: '0',
-      opacity: '0',
+      left: '-10000px',
+      width: `${CV_WIDTH}px`,
       pointerEvents: 'none',
       zIndex: '-9999',
     });
@@ -33,6 +37,16 @@
     try {
       document.body.appendChild(exportContainer);
       cvInstance = mount(CV, { target: exportContainer });
+      await tick();
+
+      if (document.fonts?.ready) await document.fonts.ready;
+
+      const cvPage = exportContainer.querySelector('[data-cv-page]');
+      if (!cvPage) throw new Error('The CV page could not be rendered.');
+
+      if (cvPage.scrollHeight > cvPage.clientHeight + 1) {
+        throw new Error('The CV content exceeds one A4 page.');
+      }
 
       const html2pdf = (await import('html2pdf.js')).default;
       const now = new Date();
@@ -41,18 +55,26 @@
 
       await html2pdf()
         .set({
-          margin: [64, 0, 64, 0],
-          filename: `QuyetDoan_DevOps_CV_${date}_${time}.pdf`,
+          margin: 0,
+          filename: `QuyetDoan_DevSecOps_CV_${date}_${time}.pdf`,
           image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 2, useCORS: true, logging: false, width: 794 },
-          jsPDF: { unit: 'px', format: [794, 1123], orientation: 'portrait' },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            width: CV_WIDTH,
+            height: CV_HEIGHT,
+            windowWidth: CV_WIDTH,
+          },
+          jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' },
           enableLinks: true,
-          pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
         })
-        .from(exportContainer.firstElementChild)
+        .from(cvPage)
         .save();
     } catch (error) {
-      cvError = 'The CV could not be generated. Please try again.';
+      cvError = error instanceof Error && error.message.includes('exceeds one A4 page')
+        ? 'The CV content no longer fits on one page. Please review the latest content.'
+        : 'The CV could not be generated. Please try again.';
       console.error(error);
     } finally {
       if (cvInstance) await unmount(cvInstance);
@@ -86,7 +108,7 @@
 
         <div class="contact-list" aria-label="Contact links">
           <a href={`mailto:${cv.contact.email}`}>{cv.contact.email}</a>
-          <a href={`tel:${cv.contact.phone.replaceAll('-', '')}`}>{cv.contact.phone}</a>
+          <a href={telephoneUrl}>{cv.contact.phone}</a>
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href={githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
@@ -141,7 +163,7 @@
       <section class="resume-section experience" aria-labelledby="experience-heading">
         <h2 id="experience-heading">Professional experience</h2>
 
-        {#each cv.experience as job (job.title + job.company + job.period)}
+        {#each cv.experience as job (job.id)}
           <article class="job">
             <div class="job-header">
               <div>
@@ -153,6 +175,16 @@
 
             {#if job.description}
               <p class="job-description">{job.description}</p>
+            {/if}
+
+            {#if job.stacks?.length}
+              <div class="job-stack" aria-label={`Technology stack for ${job.title} at ${job.company}`}>
+                <div class="stack-tags">
+                  {#each job.stacks as technology (technology)}
+                    <span class="stack-tag">{technology}</span>
+                  {/each}
+                </div>
+              </div>
             {/if}
 
             {#if job.bullets.length}
@@ -467,6 +499,27 @@
     font-style: italic;
   }
 
+  .job-stack {
+    margin-top: 0.9rem;
+  }
+
+  .stack-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .stack-tag {
+    padding: 0.2rem 0.45rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--accent-faint);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    line-height: 1.35;
+  }
+
   .job ul {
     margin-top: 1rem;
   }
@@ -521,6 +574,7 @@
       text-align: left;
       white-space: normal;
     }
+
   }
 
   @media (max-width: 460px) {

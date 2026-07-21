@@ -59,7 +59,13 @@
           <header class="entry-header">
             <div>
               <h3>{job.title}</h3>
-              <p class="company">{job.company}</p>
+              <p class="company">
+                {#if job.companyUrl}
+                  <a href={job.companyUrl} target="_blank" rel="noopener noreferrer">{job.company}</a>
+                {:else}
+                  {job.company}
+                {/if}
+              </p>
             </div>
             <p class="period">{job.period}</p>
           </header>
@@ -85,7 +91,13 @@
         <header class="entry-header">
           <div>
             <h3>{project.title}</h3>
-            <p class="company">{project.company}</p>
+            <p class="company">
+              {#if project.companyUrl}
+                <a href={project.companyUrl} target="_blank" rel="noopener noreferrer">{project.company}</a>
+              {:else}
+                {project.company}
+              {/if}
+            </p>
           </div>
           <p class="period">{project.period}</p>
         </header>
@@ -297,6 +309,11 @@
     color: #1267f4;
     font-size: 8.8pt;
     font-weight: 700;
+  }
+
+  .company a {
+    color: inherit;
+    text-decoration: none;
   }
 
   .company::before {

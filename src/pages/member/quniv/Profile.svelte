@@ -168,7 +168,13 @@
             <div class="job-header">
               <div>
                 <h3>{job.title}</h3>
-                <p class="company">{job.company}</p>
+                <p class="company">
+                  {#if job.companyUrl}
+                    <a class="company-link" href={job.companyUrl} target="_blank" rel="noopener noreferrer">{job.company}</a>
+                  {:else}
+                    {job.company}
+                  {/if}
+                </p>
               </div>
               <p class="period">{job.period}</p>
             </div>
@@ -493,6 +499,19 @@
     color: var(--muted) !important;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem !important;
+  }
+
+  .company-link {
+    color: inherit;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 0.2em;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+  }
+
+  .company-link:hover,
+  .company-link:focus-visible {
+    color: var(--primary);
+    text-decoration-color: currentColor;
   }
 
   .job-description {

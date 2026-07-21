@@ -42,6 +42,7 @@ export const cvData = {
       id: 'qtlab',
       title: 'AI-Augmented Engineering Lab',
       company: 'qtlab.dev',
+      companyUrl: 'https://qtlab.dev/',
       period: 'May 2026 – Present',
       description: 'Self-learning and development with AI-assisted workflows, Deep dive into agents and multi-agents systems capabilities.',
       stacks: ['AI Agents', 'Multica', 'Hermes Agent', 'OpenClaw', 'OpenRouter', 'Codex', 'Claude Code', 'Kubernetes', 'Argo CD', 'Cilium', 'Terraform', 'Infisical', 'Svelte', 'FastAPI', 'PostgreSQL', 'Redis'],

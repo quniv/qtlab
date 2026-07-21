@@ -51,7 +51,7 @@ export const projects = [
     title: 'qtlab.dev',
     status: 'wip',
     description: 'This site — a Svelte 5 org site deployed on Vercel. A lab for experimenting with frontend design under a dark-universe theme.',
-    stack: ['Svelte 5', 'Vite', 'Vercel'],
+    stack: ['Svelte 5', 'Vite', 'Vercel', 'bun'],
     url: 'https://qtlab.dev',
     repo: 'https://github.com/quniv/qtlab',
   },
@@ -61,7 +61,7 @@ export const projects = [
     status: 'wip',
     description: 'GitOps source of truth for homelab Kubernetes Infrastructure, managed with Argo CD’s App of Apps pattern, declarative applications, and reproducible infrastructure bootstrap.',
     stack: ['Kubernetes', 'Argo CD', 'Helm', 'Cilium', 'Terraform', 'Infisical'],
-    url: 'https://argocd.qtlab.dev/',
+    url: null,
     repo: 'https://github.com/quniv/home-argocd',
   },
   {

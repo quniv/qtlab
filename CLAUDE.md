@@ -15,28 +15,26 @@ No test framework is configured. Use `bun run build` as baseline validation; tes
 
 ## Architecture
 
-Single-page Svelte 5 + Vite app deployed on Vercel. Two pages (`news`, `aboutme`) controlled by `activeTab` state in `App.svelte`, which also owns global body styles and the nebula background overlay.
+Single-page Svelte 5 + Vite app deployed on Vercel. Each section has its own URL, routed client-side with the History API — no router dependency.
 
 ```
-src/
-  main.js              # mounts App
-  App.svelte           # root shell — Sidebar + tab-switched content area
-  CV.svelte            # CV layout rendered into a hidden DOM node for PDF export
-  cvData.js            # all CV content as structured JS objects
-  components/
-    Sidebar.svelte     # fixed 220px nav, drives activeTab via bind:
-    Starfield.svelte   # canvas starfield background
-    TerminalBoot.svelte
-    GameOfLife.svelte
-    MotivationSection.svelte
-    HangingScroll.svelte
-    TechStack.svelte
-  pages/
-    AboutMe.svelte     # profile, bio, tech stack, decorative components; owns PDF download logic
-    News.svelte        # placeholder terminal-style feed
+main.js ── /member/quniv ──▶ Profile.svelte        (standalone page)
+        └─ anything else ──▶ App.svelte
+                               └─ router.js  path ⇄ route store
+                                    /          Home
+                                    /news      News
+                                    /work      Work
+                                    /services  Services   (/service aliases here)
+                                    /team      Team
+                                    unknown    → replaced with /
 ```
 
-**CV PDF generation** (`AboutMe.svelte → downloadCV`): Svelte `mount()` renders `CV.svelte` into a hidden off-screen `<div>`, html2pdf.js captures it, then `unmount()` tears it down. CV content lives exclusively in `src/cvData.js`.
+- `src/router.js` owns `ROUTES`, `navigate(id)`, `linkClick()` and the `route` store. Add a section there, then add its branch in `App.svelte` and its tab in `TopNav.svelte`.
+- Nav items are real `<a href>` links; `linkClick` only intercepts plain left-clicks so new-tab and copy-link still work.
+- `vercel.json` rewrites every path to `index.html`, so deep links work on deploy with no server config.
+- `News.svelte` reads `latest.json` from `quniv/veen-news` via jsDelivr. Article and cluster `summary` fields are `- ` bullet lines; `summaryBullets()` renders them as a list and falls back to a paragraph for older prose digests.
+
+**CV PDF generation** (`pages/member/quniv/Profile.svelte`): Svelte `mount()` renders `CV.svelte` into a hidden off-screen `<div>`, html2pdf.js captures it, then `unmount()` tears it down. CV content lives in `pages/member/quniv/cvData.js`.
 
 ## Styling
 

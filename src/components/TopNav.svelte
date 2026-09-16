@@ -1,6 +1,7 @@
 <!-- src/components/TopNav.svelte — Minimal top navigation -->
 <script>
   import ThemeToggle from './ThemeToggle.svelte';
+  import { linkClick, pathFor } from '../router.js';
 
   export let activeTab = 'home';
 
@@ -15,9 +16,9 @@
     // { id: 'blog',     label: 'Blog' },
   ];
 
-  function select(id) {
-    activeTab = id;
+  function select(event, id) {
     mobileOpen = false;
+    linkClick(event, id);
   }
 </script>
 
@@ -80,6 +81,10 @@
     border-radius: var(--radius);
   }
 
+  .brand,
+  .nav-link,
+  .mobile-link { text-decoration: none; }
+
   .nav-link:hover   { color: var(--nav-text-hover); }
   .nav-link.active  { color: var(--nav-text-active); }
 
@@ -141,16 +146,18 @@
 </style>
 
 <nav>
-  <button class="brand" on:click={() => select('home')}>QTLAB.DEV</button>
+  <a class="brand" href="/" on:click={(e) => select(e, 'home')}>QTLAB.DEV</a>
 
   <div class="nav-actions">
     <div class="nav-links">
       {#each tabs as tab (tab.id)}
-        <button
+        <a
           class="nav-link"
           class:active={activeTab === tab.id}
-          on:click={() => select(tab.id)}
-        >{tab.label}</button>
+          href={pathFor(tab.id)}
+          aria-current={activeTab === tab.id ? 'page' : undefined}
+          on:click={(e) => select(e, tab.id)}
+        >{tab.label}</a>
       {/each}
     </div>
 
@@ -167,11 +174,13 @@
 {#if mobileOpen}
   <div class="mobile-menu">
     {#each tabs as tab (tab.id)}
-      <button
+      <a
         class="mobile-link"
         class:active={activeTab === tab.id}
-        on:click={() => select(tab.id)}
-      >{tab.label}</button>
+        href={pathFor(tab.id)}
+        aria-current={activeTab === tab.id ? 'page' : undefined}
+        on:click={(e) => select(e, tab.id)}
+      >{tab.label}</a>
     {/each}
   </div>
 {/if}

@@ -43,6 +43,19 @@
     selectedCategory = id;
   }
 
+  // Marker must be followed by whitespace, so prose like "-5% latency" isn't read as a bullet.
+  const LIST_MARKER = /^\s*(?:[-*•–—·]+|\d+[.)])\s+/;
+
+  // Returns bullet items, or null for pre-bullet digests that are still plain prose.
+  function summaryBullets(text) {
+    const lines = String(text ?? '')
+      .split('\n')
+      .map((line) => line.trim())
+      .filter(Boolean);
+    if (lines.length === 0 || !lines.every((line) => LIST_MARKER.test(line))) return null;
+    return lines.map((line) => line.replace(LIST_MARKER, ''));
+  }
+
   function formatDate(iso) {
     if (!iso) return '';
     const d = new Date(iso);
@@ -297,6 +310,19 @@
     color: var(--text-muted);
     font-size: 0.8rem;
     line-height: 1.7;
+  }
+
+  .summary-list {
+    padding-left: 1.1rem;
+    list-style: disc;
+  }
+
+  .summary-list li + li {
+    margin-top: 0.3rem;
+  }
+
+  .summary-list li::marker {
+    color: var(--text-muted);
   }
 
   .cluster-data {
@@ -787,13 +813,22 @@
         </div>
         <div class="clusters-grid">
           {#each digest.clusters as cluster (cluster.id)}
+            {@const clusterBullets = summaryBullets(cluster.summary)}
             <article class="cluster-card">
               <div class="cluster-header">
                 <span>{cluster.id}</span>
                 <span>{cluster.article_count} articles</span>
               </div>
               <h3>{cluster.topic}</h3>
-              <p class="cluster-summary">{cluster.summary}</p>
+              {#if clusterBullets}
+                <ul class="cluster-summary summary-list">
+                  {#each clusterBullets as point, i (i)}
+                    <li>{point}</li>
+                  {/each}
+                </ul>
+              {:else}
+                <p class="cluster-summary">{cluster.summary}</p>
+              {/if}
               <dl class="cluster-data">
                 <div>
                   <dt>representative_id</dt>
@@ -834,6 +869,7 @@
     {#if visibleArticles.length > 0}
       <div class="articles-grid">
         {#each visibleArticles as article (article.id)}
+          {@const articleBullets = summaryBullets(article.summary)}
           <div class="article-card">
             <div class="card-meta">
               <span class="article-category">{CATEGORY_LABELS[article.category] ?? article.category}</span>
@@ -846,7 +882,15 @@
               target="_blank"
               rel="noopener noreferrer"
             >{article.title}</a>
-            <p class="article-summary">{article.summary || 'No summary provided.'}</p>
+            {#if articleBullets}
+              <ul class="article-summary summary-list">
+                {#each articleBullets as point, i (i)}
+                  <li>{point}</li>
+                {/each}
+              </ul>
+            {:else}
+              <p class="article-summary">{article.summary || 'No summary provided.'}</p>
+            {/if}
             <div class="article-footer">
               <span class="article-date">{formatDate(article.published_at)}</span>
               <div class="article-identifiers">

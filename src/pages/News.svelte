@@ -261,7 +261,8 @@
     content: '−';
   }
 
-  .recap-detail p {
+  .recap-detail p,
+  .recap-detail ul {
     margin: 0;
     padding: 0 0.9rem 0.9rem;
     color: var(--text-muted);
@@ -319,6 +320,11 @@
 
   .summary-list li + li {
     margin-top: 0.3rem;
+  }
+
+  /* Detail panels pad 0.9rem; add room for the bullet markers on top of that. */
+  .recap-detail ul.summary-list {
+    padding-left: 2rem;
   }
 
   .summary-list li::marker {
@@ -701,6 +707,20 @@
   }
 </style>
 
+<!-- Bullet list for "- " summaries; plain paragraph for older prose digests. -->
+{#snippet summaryText(text, className = '', fallback = '')}
+  {@const bullets = summaryBullets(text)}
+  {#if bullets}
+    <ul class="{className} summary-list">
+      {#each bullets as point, i (i)}
+        <li>{point}</li>
+      {/each}
+    </ul>
+  {:else}
+    <p class={className}>{text || fallback}</p>
+  {/if}
+{/snippet}
+
 <div class="page-header">
   <div class="page-label">// News</div>
   <h1 class="page-title">Daily Digest</h1>
@@ -777,28 +797,28 @@
         <h2 class="recap-title" id="daily-summary-heading">Daily Summary</h2>
 
         {#if digest.daily_recap.full_summary}
-          <p class="recap-full-summary">{digest.daily_recap.full_summary}</p>
+          {@render summaryText(digest.daily_recap.full_summary, 'recap-full-summary')}
         {/if}
 
         <div class="recap-details">
           {#if digest.daily_recap.global_analysis}
             <details class="recap-detail">
               <summary>Global analysis</summary>
-              <p>{digest.daily_recap.global_analysis}</p>
+              {@render summaryText(digest.daily_recap.global_analysis)}
             </details>
           {/if}
 
           {#if digest.daily_recap.vietnam_analysis}
             <details class="recap-detail">
               <summary>Vietnam analysis</summary>
-              <p>{digest.daily_recap.vietnam_analysis}</p>
+              {@render summaryText(digest.daily_recap.vietnam_analysis)}
             </details>
           {/if}
 
           {#if digest.daily_recap.watch_list}
             <details class="recap-detail">
               <summary>Watch list</summary>
-              <p>{digest.daily_recap.watch_list}</p>
+              {@render summaryText(digest.daily_recap.watch_list)}
             </details>
           {/if}
         </div>
@@ -813,22 +833,13 @@
         </div>
         <div class="clusters-grid">
           {#each digest.clusters as cluster (cluster.id)}
-            {@const clusterBullets = summaryBullets(cluster.summary)}
             <article class="cluster-card">
               <div class="cluster-header">
                 <span>{cluster.id}</span>
                 <span>{cluster.article_count} articles</span>
               </div>
               <h3>{cluster.topic}</h3>
-              {#if clusterBullets}
-                <ul class="cluster-summary summary-list">
-                  {#each clusterBullets as point, i (i)}
-                    <li>{point}</li>
-                  {/each}
-                </ul>
-              {:else}
-                <p class="cluster-summary">{cluster.summary}</p>
-              {/if}
+              {@render summaryText(cluster.summary, 'cluster-summary')}
               <dl class="cluster-data">
                 <div>
                   <dt>representative_id</dt>
@@ -869,7 +880,6 @@
     {#if visibleArticles.length > 0}
       <div class="articles-grid">
         {#each visibleArticles as article (article.id)}
-          {@const articleBullets = summaryBullets(article.summary)}
           <div class="article-card">
             <div class="card-meta">
               <span class="article-category">{CATEGORY_LABELS[article.category] ?? article.category}</span>
@@ -882,15 +892,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >{article.title}</a>
-            {#if articleBullets}
-              <ul class="article-summary summary-list">
-                {#each articleBullets as point, i (i)}
-                  <li>{point}</li>
-                {/each}
-              </ul>
-            {:else}
-              <p class="article-summary">{article.summary || 'No summary provided.'}</p>
-            {/if}
+            {@render summaryText(article.summary, 'article-summary', 'No summary provided.')}
             <div class="article-footer">
               <span class="article-date">{formatDate(article.published_at)}</span>
               <div class="article-identifiers">
